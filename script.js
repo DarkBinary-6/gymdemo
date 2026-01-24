@@ -143,29 +143,29 @@ document.addEventListener("DOMContentLoaded", () => {
                 toggleActions: "play none none reverse"
             }
         });
-        // --- FORM SUBMISSION TO WHATSAPP ---
-        const enquiryForm = document.getElementById("enquiryForm");
-        if (enquiryForm) {
-            enquiryForm.addEventListener("submit", (e) => {
-                e.preventDefault();
-
-                const name = document.getElementById("userName").value;
-                const age = document.getElementById("userAge").value;
-                const enquiryFor = document.getElementById("enquiryFor").value || "Not Specified";
-                const goal = document.getElementById("userGoal").value || "General Enquiry";
-
-                // Format the message
-                // Uses %0a for new lines
-                const message = `*New Gym Enquiry* 🏋️‍♂️%0a%0a*Name:* ${name}%0a*Age:* ${age}%0a*Enquiring For:* ${enquiryFor}%0a*Topic:* ${goal}%0a%0aPlease send me more details.`;
-
-                const phoneNumber = "919278378772";
-                const whatsappUrl = `https://wa.me/${phoneNumber}?text=${message}`;
-
-                // Redirect
-                window.open(whatsappUrl, '_blank');
-            });
-        }
-
     });
+
+    // --- FORM SUBMISSION TO WHATSAPP ---
+    const enquiryForm = document.getElementById("enquiryForm");
+    if (enquiryForm) {
+        enquiryForm.addEventListener("submit", (e) => {
+            e.preventDefault();
+
+            const name = document.getElementById("userName").value;
+            const age = document.getElementById("userAge").value;
+            const enquiryFor = document.getElementById("enquiryFor").value || "Not Specified";
+            const goal = document.getElementById("userGoal").value || "General Enquiry";
+
+            // Format the message
+            // Uses %0a for new lines
+            const message = `*New Gym Enquiry* 🏋️‍♂️%0a%0a*Name:* ${name}%0a*Age:* ${age}%0a*Enquiring For:* ${enquiryFor}%0a*Topic:* ${goal}%0a%0aPlease send me more details.`;
+
+            const phoneNumber = "919278378772";
+            const whatsappUrl = `https://wa.me/${phoneNumber}?text=${message}`;
+
+            // Redirect
+            window.open(whatsappUrl, '_blank');
+        });
+    }
 
 });
