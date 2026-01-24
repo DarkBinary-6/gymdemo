@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IRONFORGE | Elite Fitness</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Anton&family=Roboto+Condensed:ital,wght@0,300;0,400;0,700;1,700&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+  <!-- Assuming FA is desired, using a generic CDN or will switch to SVG icons if needed. For safety, I will use SVGs or text if this fails. -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+
+  <!-- NAVIGATION -->
+  <nav class="navbar">
+    <div class="logo">IRON<span class="accent">FORGE</span></div>
+    <div class="nav-links">
+      <a href="#home">Home</a>
+      <a href="#about">About</a>
+      <a href="#programs">Programs</a>
+      <a href="#trainers">Trainers</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <a href="#contact" class="cta-btn">Join Now</a>
+    <div class="menu-toggle"><i class="fas fa-bars"></i></div>
+  </nav>
+
+  <!-- HERO SECTION -->
+  <header id="home" class="hero">
+    <div class="overlay"></div>
+    <!-- High quality gym background -->
+    <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=2070&auto=format&fit=crop"
+      class="hero-bg" alt="Gym Background">
+
+    <div class="hero-content">
+      <h2 class="hero-subtitle">Redefine Your Limits</h2>
+      <h1 class="hero-title">
+        <div class="hero-line">SCULPT YOUR</div>
+        <div class="hero-line"><span class="text-stroke">LEGACY</span></div>
+      </h1>
+      <p class="hero-desc">Experience the next level of fitness with world-class equipment, expert trainers, and an
+        atmosphere that demands greatness.</p>
+      <a href="#contact" class="main-btn">Start Your Journey</a>
+    </div>
+
+    <div class="scroll-indicator">
+      <div class="mouse"></div>
+    </div>
+  </header>
+
+  <!-- ABOUT SECTION -->
+  <section id="about" class="about-section">
+    <div class="container split-layout">
+      <div class="about-text">
+        <h3 class="section-label">Who We Are</h3>
+        <h2 class="section-title">NOT JUST A GYM.<br>WE ARE A <span class="accent">REVOLUTION.</span></h2>
+        <p class="section-desc">Founded on the principles of grit, determination, and raw power, IronForge is where
+          excuses go to die. We provide an elite environment for athletes, bodybuilders, and fitness enthusiasts.</p>
+
+        <div class="stats-grid">
+          <div class="stat-item">
+            <span class="stat-number" data-target="5000">0</span>
+            <span class="stat-label">Members</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-number" data-target="50">0</span>
+            <span class="stat-label">Trainers</span>
+          </div>
+        </div>
+      </div>
+      <div class="about-visuals">
+        <div class="img-box img-1">
+          <img src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?q=80&w=2070&auto=format&fit=crop"
+            alt="Gym Life">
+        </div>
+        <div class="img-box img-2">
+          <img src="https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?q=80&w=2070&auto=format&fit=crop"
+            alt="Training">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROGRAMS SECTION -->
+  <section id="programs" class="programs-section">
+    <div class="container p-center">
+      <h3 class="section-label">Our Programs</h3>
+      <h2 class="section-title">FORGE YOUR PATH</h2>
+    </div>
+
+    <div class="programs-grid container">
+      <!-- Card 1 -->
+      <div class="program-card">
+        <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=2070&auto=format&fit=crop"
+          class="card-bg" alt="Strength">
+        <div class="card-content">
+          <i class="fas fa-dumbbell card-icon"></i>
+          <h4>Strength Training</h4>
+          <p>Build raw power with heavy lifting and compound movements.</p>
+        </div>
+      </div>
+      <!-- Card 2 -->
+      <div class="program-card">
+        <img src="https://images.unsplash.com/photo-1601422407692-ec4eeec1d9b3?q=80&w=1925&auto=format&fit=crop"
+          class="card-bg" alt="Cardio">
+        <div class="card-content">
+          <i class="fas fa-running card-icon"></i>
+          <h4>Cardio & HIIT</h4>
+          <p>Torch calories and improve endurance with high-intensity intervals.</p>
+        </div>
+      </div>
+      <!-- Card 3 -->
+      <div class="program-card">
+        <img src="https://images.unsplash.com/photo-1599058945522-28d584b6f0ff?q=80&w=2069&auto=format&fit=crop"
+          class="card-bg" alt="Boxing">
+        <div class="card-content">
+          <i class="fas fa-fist-raised card-icon"></i>
+          <h4>Boxing & MMA</h4>
+          <p>Master self-defense and agility in our professional boxing ring.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BANNER -->
+  <section class="banner-section">
+    <div class="banner-content">
+      <h2>UNLEASH YOUR POTENTIAL</h2>
+      <a href="#contact" class="main-btn btn-white">Join Today</a>
+    </div>
+  </section>
+
+  <!-- TRAINERS SECTION -->
+  <section id="trainers" class="trainers-section">
+    <div class="container p-center">
+      <h3 class="section-label">Our Team</h3>
+      <h2 class="section-title">MEET THE ELITE</h2>
+    </div>
+    <div class="trainers-grid container">
+      <div class="trainer-card">
+        <img src="https://images.unsplash.com/photo-1567013127542-490d757e51fc?q=80&w=1974&auto=format&fit=crop"
+          alt="Trainer 1">
+        <div class="trainer-info">
+          <h4>Alex Mercer</h4>
+          <p>Head Coach</p>
+        </div>
+      </div>
+      <div class="trainer-card">
+        <img src="https://images.unsplash.com/photo-1611672585731-fa10603fb9e0?q=80&w=1974&auto=format&fit=crop"
+          alt="Trainer 2">
+        <div class="trainer-info">
+          <h4>Sarah Jones</h4>
+          <p>Strength Coach</p>
+        </div>
+      </div>
+      <div class="trainer-card">
+        <img src="https://images.unsplash.com/photo-1597347343908-2937e7dcc560?q=80&w=1974&auto=format&fit=crop"
+          alt="Trainer 3">
+        <div class="trainer-info">
+          <h4>Marcus Webb</h4>
+          <p>Bodybuilding</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT SECTION -->
+  <section id="contact" class="contact-section">
+    <div class="container split-layout">
+      <div class="contact-info">
+        <h3 class="section-label">Join The Club</h3>
+        <h2 class="section-title">START YOUR <span class="accent">JOURNEY</span></h2>
+        <p class="section-desc">Stop waiting for the perfect moment. Take the first step today and let us guide you to
+          your best self.</p>
+        <ul class="contact-details">
+          <li><i class="fas fa-map-marker-alt"></i> 123 Iron Street, Muscle City</li>
+          <li><i class="fas fa-phone"></i> +1 (555) 123-4567</li>
+          <li><i class="fas fa-envelope"></i> join@ironforge.com</li>
+        </ul>
+      </div>
+      <div class="contact-form-wrapper">
+        <form class="contact-form" id="enquiryForm">
+          <input type="text" id="userName" placeholder="Name" required>
+          <input type="number" id="userAge" placeholder="Age" required min="10" max="100">
+          <select id="enquiryFor" class="enquiry-select">
+            <option value="" disabled selected>Enquiring For</option>
+            <option value="Self">Self</option>
+            <option value="Couple">Couple</option>
+            <option value="Family">Family</option>
+            <option value="Group">Group</option>
+          </select>
+          <select id="userGoal">
+            <option value="" disabled selected>Enquiry Topic</option>
+            <option value="Membership Fees">Membership Fees</option>
+            <option value="Muscle Gain">Muscle Gain</option>
+            <option value="Weight Loss">Weight Loss</option>
+            <option value="General Fitness">General Fitness</option>
+            <option value="Personal Training">Personal Training</option>
+            <option value="Other">Other</option>
+          </select>
+          <button type="submit" class="main-btn">Join Now</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container footer-content">
+      <div class="footer-brand">
+        <h2>IRON<span class="accent">FORGE</span></h2>
+        <p>Forging elite bodies and unbreakable minds since 2010.</p>
+      </div>
+      <div class="footer-social">
+        <a href="#"><i class="fab fa-instagram"></i></a>
+        <a href="#"><i class="fab fa-twitter"></i></a>
+        <a href="#"><i class="fab fa-youtube"></i></a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      &copy; 2026 IronForge Gym. All rights reserved. <br>
+      <span style="font-size: 1rem; opacity: 1; display: inline-block; margin-top: 5px;">
+        Design & built by <a href="https://enchanted-developers.vercel.app/" target="_blank"
+          style="color: var(--accent-color); text-decoration: underline;">EnchantedDevelopers</a>
+      </span>
+    </div>
+  </footer>
+
+  <a href="tel:+919278378772" class="sticky-call-btn">
+    <i class="fas fa-phone-alt"></i>
+  </a>
+
+  <script src="script.js"></script>
+</body>
+
+</html>
