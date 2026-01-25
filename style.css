@@ -677,7 +677,11 @@ footer {
     }
 
     .navbar {
-        padding: 15px 20px;
+        padding: 15px 15px;
+    }
+
+    .logo {
+        font-size: 1.2rem;
     }
 
     .nav-links,
@@ -729,8 +733,8 @@ footer {
 /* --- STICKY CALL BUTTON --- */
 .sticky-call-btn {
     position: fixed;
-    bottom: 30px;
-    right: 30px;
+    bottom: 20px;
+    right: 20px;
     width: 60px;
     height: 60px;
     background-color: var(--accent-color);
@@ -748,6 +752,17 @@ footer {
     cursor: pointer;
     transition: transform 0.3s ease;
     animation: bounce 2s infinite;
+}
+
+/* Mobile adjustments for sticky button */
+@media (max-width: 768px) {
+    .sticky-call-btn {
+        bottom: 15px;
+        right: 15px;
+        width: 50px;
+        height: 50px;
+        font-size: 1.2rem;
+    }
 }
 
 .sticky-call-btn:hover {
