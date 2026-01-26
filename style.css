@@ -4,11 +4,14 @@
     --text-color: #ffffff;
     --accent-color: #E50914;
     /* Red */
+    --accent-glow: rgba(229, 9, 20, 0.5);
     --gray: #888888;
     --font-heading: 'Roboto Condensed', sans-serif;
     /* Cleaner than Anton */
     --font-body: 'Roboto Condensed', sans-serif;
     --transition: all 0.3s ease;
+    --transition-smooth: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-bounce: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
 }
 
 * {
@@ -29,6 +32,34 @@ body {
     /* Lighter body text */
     line-height: 1.6;
     overflow-x: hidden;
+}
+
+/* Animated gradient background */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at 20% 50%, rgba(229, 9, 20, 0.03) 0%, transparent 50%),
+        radial-gradient(circle at 80% 80%, rgba(229, 9, 20, 0.03) 0%, transparent 50%);
+    z-index: -1;
+    animation: gradientShift 15s ease infinite;
+}
+
+@keyframes gradientShift {
+
+    0%,
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+    50% {
+        opacity: 0.8;
+        transform: scale(1.1);
+    }
 }
 
 h1,
@@ -164,8 +195,14 @@ img {
     cursor: pointer;
     font-size: 1.5rem;
     color: var(--text-color);
-    z-index: 1001;
+    z-index: 10001;
     transition: color 0.3s ease;
+    position: relative;
+}
+
+.menu-toggle i {
+    display: block;
+    pointer-events: none;
 }
 
 .menu-toggle:hover {
@@ -338,6 +375,51 @@ section {
 .section-title {
     font-size: 3rem;
     margin-bottom: 2rem;
+    position: relative;
+    display: inline-block;
+}
+
+.section-title::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 0;
+    width: 60px;
+    height: 3px;
+    background: var(--accent-color);
+    animation: lineGrow 2s ease infinite;
+}
+
+@keyframes lineGrow {
+
+    0%,
+    100% {
+        width: 60px;
+    }
+
+    50% {
+        width: 100px;
+    }
+}
+
+/* Glowing text effect */
+.section-title:hover {
+    text-shadow: 0 0 20px var(--accent-glow),
+        0 0 40px var(--accent-glow);
+    animation: textGlow 1.5s ease-in-out infinite;
+}
+
+@keyframes textGlow {
+
+    0%,
+    100% {
+        text-shadow: 0 0 10px var(--accent-glow);
+    }
+
+    50% {
+        text-shadow: 0 0 20px var(--accent-glow),
+            0 0 30px var(--accent-glow);
+    }
 }
 
 /* --- ABOUT --- */
@@ -425,6 +507,28 @@ section {
     overflow: hidden;
     border-radius: 4px;
     cursor: pointer;
+    transform-style: preserve-3d;
+    transition: var(--transition-smooth);
+}
+
+.program-card::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+            var(--accent-glow) 0%, transparent 50%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: 1;
+}
+
+.program-card:hover::after {
+    opacity: 0.3;
+}
+
+.program-card:hover {
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: 0 20px 40px rgba(229, 9, 20, 0.3);
 }
 
 .card-bg {
@@ -525,6 +629,28 @@ section {
     height: 450px;
     overflow: hidden;
     border-radius: 4px;
+    transform-style: preserve-3d;
+    transition: var(--transition-smooth);
+    cursor: pointer;
+}
+
+.trainer-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, var(--accent-glow) 0%, transparent 50%);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    z-index: 1;
+}
+
+.trainer-card:hover::before {
+    opacity: 0.2;
+}
+
+.trainer-card:hover {
+    transform: translateY(-15px) rotateX(2deg);
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
 }
 
 .trainer-card img {
@@ -734,6 +860,13 @@ footer {
         display: block;
         font-size: 1.5rem;
         cursor: pointer;
+        z-index: 10001;
+        flex-shrink: 0;
+    }
+
+    /* Ensure navbar items are properly positioned */
+    .navbar {
+        z-index: 10000;
     }
 }
 
@@ -752,7 +885,7 @@ footer {
     justify-content: center;
     align-items: center;
     font-size: 1.5rem;
-    z-index: 9999;
+    z-index: 10000;
     box-shadow: 0 4px 15px rgba(229, 9, 20, 0.4);
     /* Red glow */
     border: 2px solid white;
@@ -769,6 +902,7 @@ footer {
         width: 50px;
         height: 50px;
         font-size: 1.2rem;
+        z-index: 10000;
     }
 }
 

@@ -93,147 +93,249 @@ form.addEventListener('submit', (e) => {
 // Register ScrollTrigger plugin
 gsap.registerPlugin(ScrollTrigger);
 
-// Hero parallax effect
+// Hero parallax effect with enhanced movement
 gsap.to('.hero-bg', {
   scrollTrigger: {
     trigger: '.hero',
     start: 'top top',
     end: 'bottom top',
-    scrub: true
+    scrub: 1.5
   },
-  y: 300,
-  scale: 1.2
+  y: 400,
+  scale: 1.3,
+  ease: 'none'
 });
 
-// Hero content fade in
+// Hero content fade in with bounce
 gsap.from('.hero-content', {
   opacity: 0,
-  y: 50,
-  duration: 1,
+  y: 80,
+  duration: 1.2,
   delay: 0.3,
-  ease: 'power3.out'
+  ease: 'power4.out'
 });
 
-// Hero title stagger animation
+// Hero title stagger animation with advanced easing
 gsap.from('.hero-line', {
   opacity: 0,
-  y: 100,
-  duration: 1,
-  stagger: 0.2,
-  delay: 0.5,
-  ease: 'power4.out'
+  y: 120,
+  rotationX: -90,
+  transformOrigin: 'top center',
+  duration: 1.2,
+  stagger: 0.3,
+  delay: 0.6,
+  ease: 'back.out(1.7)'
 });
 
 // Scroll indicator animation
 gsap.to('.scroll-indicator', {
-  y: 10,
-  duration: 1,
+  y: 15,
+  duration: 1.2,
   repeat: -1,
   yoyo: true,
   ease: 'power1.inOut'
 });
 
-// Section animations on scroll
+// Section animations on scroll with enhanced effects
 const sections = gsap.utils.toArray('section');
 sections.forEach((section, index) => {
   gsap.from(section, {
     scrollTrigger: {
       trigger: section,
-      start: 'top 80%',
-      end: 'top 50%',
-      toggleActions: 'play none none reverse'
+      start: 'top 85%',
+      end: 'top 40%',
+      toggleActions: 'play none none reverse',
+      scrub: 0.5
     },
     opacity: 0,
-    y: 50,
-    duration: 1,
+    y: 100,
+    scale: 0.95,
+    duration: 1.5,
     ease: 'power3.out'
   });
 });
 
-// About images animation
+// About images animation with 3D rotation
 gsap.from('.img-box', {
   scrollTrigger: {
     trigger: '.about-visuals',
+    start: 'top 80%',
+    toggleActions: 'play none none reverse'
+  },
+  opacity: 0,
+  scale: 0.7,
+  rotationY: -45,
+  duration: 1.2,
+  stagger: 0.3,
+  ease: 'back.out(2)'
+});
+
+// Stats animation with bounce
+gsap.from('.stat-item', {
+  scrollTrigger: {
+    trigger: '.stats-grid',
     start: 'top 80%'
   },
   opacity: 0,
-  scale: 0.8,
-  duration: 1,
+  y: 50,
+  scale: 0.5,
+  duration: 0.8,
   stagger: 0.2,
-  ease: 'back.out(1.7)'
+  ease: 'elastic.out(1, 0.5)'
 });
 
-// Program cards stagger
+// Program cards stagger with 3D effect
 gsap.from('.program-card', {
   scrollTrigger: {
     trigger: '.programs-grid',
-    start: 'top 80%'
+    start: 'top 80%',
+    toggleActions: 'play none none reverse'
   },
   opacity: 0,
-  y: 100,
-  duration: 0.8,
+  y: 150,
+  rotationX: 45,
+  duration: 1,
+  stagger: 0.25,
+  ease: 'power4.out'
+});
+
+// Trainer cards animation with slide and fade
+gsap.from('.trainer-card', {
+  scrollTrigger: {
+    trigger: '.trainers-grid',
+    start: 'top 80%',
+    toggleActions: 'play none none reverse'
+  },
+  opacity: 0,
+  x: (index) => index % 2 === 0 ? -100 : 100,
+  scale: 0.8,
+  duration: 1,
   stagger: 0.2,
   ease: 'power3.out'
 });
 
-// Trainer cards animation
-gsap.from('.trainer-card', {
+// Banner text animation with elastic bounce
+gsap.from('.banner-content h2', {
   scrollTrigger: {
-    trigger: '.trainers-grid',
-    start: 'top 80%'
+    trigger: '.banner-section',
+    start: 'top 70%',
+    toggleActions: 'play none none reverse'
   },
   opacity: 0,
-  scale: 0.9,
-  duration: 0.8,
-  stagger: 0.15,
-  ease: 'power2.out'
+  scale: 0.5,
+  rotation: -10,
+  duration: 1.2,
+  ease: 'elastic.out(1, 0.6)'
 });
 
-// Banner text animation
-gsap.from('.banner-content h2', {
+// Banner button animation
+gsap.from('.banner-content .main-btn', {
   scrollTrigger: {
     trigger: '.banner-section',
     start: 'top 70%'
   },
   opacity: 0,
-  scale: 0.8,
+  y: 50,
   duration: 1,
-  ease: 'elastic.out(1, 0.5)'
+  delay: 0.3,
+  ease: 'back.out(1.7)'
 });
 
-// Contact section split animation
+// Contact section split animation with enhanced movement
 gsap.from('.contact-info', {
   scrollTrigger: {
     trigger: '.contact-section',
-    start: 'top 70%'
+    start: 'top 70%',
+    toggleActions: 'play none none reverse'
   },
   opacity: 0,
-  x: -50,
-  duration: 1,
+  x: -100,
+  rotationY: -20,
+  duration: 1.2,
   ease: 'power3.out'
 });
 
 gsap.from('.contact-form-wrapper', {
   scrollTrigger: {
     trigger: '.contact-section',
-    start: 'top 70%'
+    start: 'top 70%',
+    toggleActions: 'play none none reverse'
   },
   opacity: 0,
-  x: 50,
-  duration: 1,
+  x: 100,
+  rotationY: 20,
+  duration: 1.2,
   ease: 'power3.out'
 });
 
-// Section titles animation
+// Section titles animation with split effect
 gsap.utils.toArray('.section-title').forEach(title => {
   gsap.from(title, {
     scrollTrigger: {
       trigger: title,
-      start: 'top 85%'
+      start: 'top 90%',
+      toggleActions: 'play none none reverse'
     },
     opacity: 0,
-    y: 30,
+    y: 50,
+    scale: 0.9,
+    duration: 1,
+    ease: 'back.out(1.7)'
+  });
+});
+
+// Section labels animation
+gsap.utils.toArray('.section-label').forEach(label => {
+  gsap.from(label, {
+    scrollTrigger: {
+      trigger: label,
+      start: 'top 90%'
+    },
+    opacity: 0,
+    x: -30,
     duration: 0.8,
     ease: 'power2.out'
   });
 });
+
+// ===== MAGNETIC BUTTON EFFECT =====
+const magneticButtons = document.querySelectorAll('.main-btn, .cta-btn');
+
+magneticButtons.forEach(button => {
+  button.addEventListener('mousemove', (e) => {
+    const rect = button.getBoundingClientRect();
+    const x = e.clientX - rect.left - rect.width / 2;
+    const y = e.clientY - rect.top - rect.height / 2;
+
+    gsap.to(button, {
+      x: x * 0.3,
+      y: y * 0.3,
+      duration: 0.3,
+      ease: 'power2.out'
+    });
+  });
+
+  button.addEventListener('mouseleave', () => {
+    gsap.to(button, {
+      x: 0,
+      y: 0,
+      duration: 0.5,
+      ease: 'elastic.out(1, 0.3)'
+    });
+  });
+});
+
+// ===== CARD MOUSE TRACKING FOR GLOW EFFECT =====
+const programCards = document.querySelectorAll('.program-card');
+
+programCards.forEach(card => {
+  card.addEventListener('mousemove', (e) => {
+    const rect = card.getBoundingClientRect();
+    const x = ((e.clientX - rect.left) / rect.width) * 100;
+    const y = ((e.clientY - rect.top) / rect.height) * 100;
+
+    card.style.setProperty('--mouse-x', `${x}%`);
+    card.style.setProperty('--mouse-y', `${y}%`);
+  });
+});
+
