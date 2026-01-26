@@ -439,8 +439,9 @@ section {
 
 .stats-grid {
     display: flex;
-    gap: 40px;
+    gap: 60px;
     margin-top: 40px;
+    align-items: flex-start;
 }
 
 .stat-number {
@@ -534,7 +535,14 @@ section {
 }
 
 .card-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
     transition: transform 0.6s ease;
+    z-index: 0;
 }
 
 .program-card:hover .card-bg {
