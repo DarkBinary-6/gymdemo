@@ -446,11 +446,12 @@ section {
 
 .stat-number {
     display: block;
-    font-size: 2.5rem;
+    font-size: 3.5rem;
     font-family: var(--font-heading);
     font-weight: 700;
     color: #fff;
     transition: color 0.3s ease;
+    line-height: 1;
 }
 
 .stat-item {
@@ -664,8 +665,15 @@ section {
 }
 
 .trainer-card img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
     transition: transform 0.5s ease;
     filter: grayscale(100%);
+    z-index: 0;
 }
 
 .trainer-card:hover img {
