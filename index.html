@@ -8,18 +8,18 @@
   <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
   <meta http-equiv="Pragma" content="no-cache">
   <meta http-equiv="Expires" content="0">
-  <title>IRONFORGE | Elite Fitness</title>
+  <title>IRONFORGE | Elite Fitness - Transform Your Body in 90 Days</title>
+  <meta name="description"
+    content="Join IronForge Gym - Expert trainers, world-class equipment, and proven results. Book your FREE trial today!">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
     href="https://fonts.googleapis.com/css2?family=Anton&family=Roboto+Condensed:ital,wght@0,300;0,400;0,700;1,700&display=swap"
     rel="stylesheet">
   <!-- CSS with timestamp version for cache busting - Update on every deploy -->
-  <link rel="stylesheet" href="style.css?v=20260127135800">
+  <link rel="stylesheet" href="style.css?v=20260128224300">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
-  <!-- Assuming FA is desired, using a generic CDN or will switch to SVG icons if needed. For safety, I will use SVGs or text if this fails. -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 
@@ -32,29 +32,44 @@
       <a href="#home">Home</a>
       <a href="#about">About</a>
       <a href="#programs">Programs</a>
+      <a href="#pricing">Pricing</a>
       <a href="#trainers">Trainers</a>
       <a href="#contact">Contact</a>
     </div>
-    <a href="#contact" class="cta-btn">Join Now</a>
+    <a href="#contact" class="cta-btn">Book Free Trial</a>
     <div class="menu-toggle"><i class="fas fa-bars"></i></div>
   </nav>
 
-  <!-- HERO SECTION -->
+  <!-- HERO SECTION - CONVERSION FOCUSED -->
   <header id="home" class="hero">
     <div class="overlay"></div>
-    <!-- High quality gym background -->
     <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=2070&auto=format&fit=crop"
       class="hero-bg" alt="Gym Background">
 
     <div class="hero-content">
-      <h2 class="hero-subtitle">Redefine Your Limits</h2>
+      <h2 class="hero-subtitle">Transform Your Body in 90 Days</h2>
       <h1 class="hero-title">
-        <div class="hero-line">SCULPT YOUR</div>
-        <div class="hero-line"><span class="text-stroke">LEGACY</span></div>
+        <div class="hero-line">LOSE WEIGHT.</div>
+        <div class="hero-line"><span class="text-stroke">BUILD STRENGTH.</span></div>
       </h1>
-      <p class="hero-desc">Experience the next level of fitness with world-class equipment, expert trainers, and an
-        atmosphere that demands greatness.</p>
-      <a href="#contact" class="main-btn">Start Your Journey</a>
+      <p class="hero-desc">Join 5,000+ members who achieved their dream physique with expert coaching,
+        personalized diet plans, and 24/7 gym access. Your transformation starts today.</p>
+
+      <div class="hero-cta-group">
+        <a href="#contact" class="main-btn">Book Free Trial</a>
+        <a href="https://wa.me/919278378772?text=Hi!%20I%20want%20to%20know%20about%20IronForge%20membership"
+          class="secondary-btn" target="_blank">
+          <i class="fab fa-whatsapp"></i> Chat on WhatsApp
+        </a>
+      </div>
+
+      <p class="hero-trust-text">
+        <i class="fas fa-check-circle"></i> No contracts
+        <span class="trust-divider">•</span>
+        <i class="fas fa-check-circle"></i> No obligation
+        <span class="trust-divider">•</span>
+        <i class="fas fa-clock"></i> Limited slots available
+      </p>
     </div>
 
     <div class="scroll-indicator">
@@ -66,19 +81,32 @@
   <section id="about" class="about-section">
     <div class="container split-layout">
       <div class="about-text">
-        <h3 class="section-label">Who We Are</h3>
-        <h2 class="section-title">NOT JUST A GYM.<br>WE ARE A <span class="accent">REVOLUTION.</span></h2>
-        <p class="section-desc">Founded on the principles of grit, determination, and raw power, IronForge is where
-          excuses go to die. We provide an elite environment for athletes, bodybuilders, and fitness enthusiasts.</p>
+        <h3 class="section-label">Why IronForge?</h3>
+        <h2 class="section-title">RESULTS THAT<br>SPEAK FOR <span class="accent">THEMSELVES.</span></h2>
+        <p class="section-desc">At IronForge, we don't just give you equipment — we give you a proven system.
+          Expert trainers who track your progress weekly. Customized meal plans that fit your lifestyle.
+          A community that holds you accountable. <strong>This is where excuses end and transformations begin.</strong>
+        </p>
+
+        <ul class="benefit-list">
+          <li><i class="fas fa-check"></i> Certified trainers with 10+ years experience</li>
+          <li><i class="fas fa-check"></i> Personalized diet & workout plans</li>
+          <li><i class="fas fa-check"></i> Weekly progress tracking & body composition analysis</li>
+          <li><i class="fas fa-check"></i> 24/7 gym access with premium equipment</li>
+        </ul>
 
         <div class="stats-grid">
           <div class="stat-item">
             <span class="stat-number" data-target="5000">0</span>
-            <span class="stat-label">Members</span>
+            <span class="stat-label">Happy Members</span>
           </div>
           <div class="stat-item">
             <span class="stat-number" data-target="50">0</span>
-            <span class="stat-label">Trainers</span>
+            <span class="stat-label">Expert Trainers</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-number" data-target="12">0</span>
+            <span class="stat-label">Years Experience</span>
           </div>
         </div>
       </div>
@@ -93,13 +121,19 @@
         </div>
       </div>
     </div>
+
+    <!-- CTA After About -->
+    <div class="section-cta container">
+      <a href="#contact" class="main-btn">Start Free Trial <i class="fas fa-arrow-right"></i></a>
+    </div>
   </section>
 
   <!-- PROGRAMS SECTION -->
   <section id="programs" class="programs-section">
     <div class="container p-center">
-      <h3 class="section-label">Our Programs</h3>
-      <h2 class="section-title">FORGE YOUR PATH</h2>
+      <h3 class="section-label">Training Programs</h3>
+      <h2 class="section-title">CHOOSE YOUR PATH TO SUCCESS</h2>
+      <p class="section-subtitle">Every program includes personal coaching, diet guidance, and progress tracking.</p>
     </div>
 
     <div class="programs-grid container">
@@ -110,7 +144,8 @@
         <div class="card-content">
           <i class="fas fa-dumbbell card-icon"></i>
           <h4>Strength Training</h4>
-          <p>Build raw power with heavy lifting and compound movements.</p>
+          <p>Build raw power and muscle mass with our proven hypertrophy program. Average member gains 8kg muscle in 6
+            months.</p>
         </div>
       </div>
       <!-- Card 2 -->
@@ -118,9 +153,9 @@
         <img src="https://images.unsplash.com/photo-1601422407692-ec4eeec1d9b3?q=80&w=1925&auto=format&fit=crop"
           class="card-bg" alt="Cardio">
         <div class="card-content">
-          <i class="fas fa-running card-icon"></i>
-          <h4>Cardio & HIIT</h4>
-          <p>Torch calories and improve endurance with high-intensity intervals.</p>
+          <i class="fas fa-fire card-icon"></i>
+          <h4>Fat Loss & HIIT</h4>
+          <p>Torch calories and shred fat with high-intensity intervals. Members lose 5-10kg in just 12 weeks.</p>
         </div>
       </div>
       <!-- Card 3 -->
@@ -130,25 +165,188 @@
         <div class="card-content">
           <i class="fas fa-fist-raised card-icon"></i>
           <h4>Boxing & MMA</h4>
-          <p>Master self-defense and agility in our professional boxing ring.</p>
+          <p>Master self-defense while getting in the best shape of your life. Full-body workout guaranteed.</p>
         </div>
       </div>
     </div>
+
+    <!-- CTA After Programs -->
+    <div class="section-cta container">
+      <a href="#contact" class="main-btn">Get Membership Details <i class="fas fa-arrow-right"></i></a>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS SECTION -->
+  <section id="testimonials" class="testimonials-section">
+    <div class="container p-center">
+      <h3 class="section-label">Success Stories</h3>
+      <h2 class="section-title">WHAT OUR MEMBERS SAY</h2>
+    </div>
+
+    <div class="testimonials-grid container">
+      <!-- Testimonial 1 -->
+      <div class="testimonial-card">
+        <div class="testimonial-stars">
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+        </div>
+        <p class="testimonial-quote">"I lost 18kg in 4 months! The trainers here don't just guide you — they push you to
+          be your best. My confidence has completely transformed."</p>
+        <div class="testimonial-author">
+          <div class="author-avatar">
+            <i class="fas fa-user"></i>
+          </div>
+          <div class="author-info">
+            <h5>Rahul Sharma</h5>
+            <span>Age 32 • Lost 18kg</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Testimonial 2 -->
+      <div class="testimonial-card featured">
+        <div class="testimonial-stars">
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+        </div>
+        <p class="testimonial-quote">"From skinny to strong in 6 months. I gained 12kg of muscle and finally feel proud
+          of my body. IronForge changed my life!"</p>
+        <div class="testimonial-author">
+          <div class="author-avatar">
+            <i class="fas fa-user"></i>
+          </div>
+          <div class="author-info">
+            <h5>Ankit Verma</h5>
+            <span>Age 24 • Gained 12kg Muscle</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Testimonial 3 -->
+      <div class="testimonial-card">
+        <div class="testimonial-stars">
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+        </div>
+        <p class="testimonial-quote">"As a working mom, I thought I'd never have time for fitness. The flexible timings
+          and supportive community made it possible. Down 2 dress sizes!"</p>
+        <div class="testimonial-author">
+          <div class="author-avatar">
+            <i class="fas fa-user"></i>
+          </div>
+          <div class="author-info">
+            <h5>Priya Patel</h5>
+            <span>Age 38 • Lifestyle Change</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <p class="testimonial-disclaimer container">* Results may vary. Testimonials shown for demonstration purposes.</p>
+  </section>
+
+  <!-- PRICING SECTION -->
+  <section id="pricing" class="pricing-section">
+    <div class="container p-center">
+      <h3 class="section-label">Membership Plans</h3>
+      <h2 class="section-title">INVEST IN YOUR <span class="accent">TRANSFORMATION</span></h2>
+      <p class="section-subtitle">Choose the plan that fits your goals. All plans include gym access + expert guidance.
+      </p>
+    </div>
+
+    <div class="pricing-grid container">
+      <!-- Basic Plan -->
+      <div class="pricing-card">
+        <div class="pricing-header">
+          <h4>Basic</h4>
+          <div class="pricing-amount">
+            <span class="currency">₹</span>
+            <span class="price">1,499</span>
+            <span class="period">/month</span>
+          </div>
+        </div>
+        <ul class="pricing-features">
+          <li><i class="fas fa-check"></i> Unlimited gym access</li>
+          <li><i class="fas fa-check"></i> Basic equipment usage</li>
+          <li><i class="fas fa-check"></i> Locker facility</li>
+          <li class="disabled"><i class="fas fa-times"></i> Personal trainer</li>
+          <li class="disabled"><i class="fas fa-times"></i> Diet consultation</li>
+        </ul>
+        <a href="#contact" class="pricing-btn">Enquire Now</a>
+      </div>
+
+      <!-- Standard Plan - Recommended -->
+      <div class="pricing-card recommended">
+        <div class="recommended-badge">MOST POPULAR</div>
+        <div class="pricing-header">
+          <h4>Standard</h4>
+          <div class="pricing-amount">
+            <span class="currency">₹</span>
+            <span class="price">2,999</span>
+            <span class="period">/month</span>
+          </div>
+        </div>
+        <ul class="pricing-features">
+          <li><i class="fas fa-check"></i> Everything in Basic</li>
+          <li><i class="fas fa-check"></i> Group fitness classes</li>
+          <li><i class="fas fa-check"></i> 2 PT sessions/month</li>
+          <li><i class="fas fa-check"></i> Basic diet plan</li>
+          <li><i class="fas fa-check"></i> Progress tracking</li>
+        </ul>
+        <a href="#contact" class="pricing-btn btn-primary">Enquire Now</a>
+      </div>
+
+      <!-- Premium Plan -->
+      <div class="pricing-card">
+        <div class="pricing-header">
+          <h4>Premium</h4>
+          <div class="pricing-amount">
+            <span class="currency">₹</span>
+            <span class="price">4,999</span>
+            <span class="period">/month</span>
+          </div>
+        </div>
+        <ul class="pricing-features">
+          <li><i class="fas fa-check"></i> Everything in Standard</li>
+          <li><i class="fas fa-check"></i> Unlimited PT sessions</li>
+          <li><i class="fas fa-check"></i> Custom diet plan</li>
+          <li><i class="fas fa-check"></i> Body composition analysis</li>
+          <li><i class="fas fa-check"></i> Priority support</li>
+        </ul>
+        <a href="#contact" class="pricing-btn">Enquire Now</a>
+      </div>
+    </div>
+
+    <p class="pricing-note container">
+      <i class="fas fa-info-circle"></i> Custom plans available. Contact us for personalised pricing.
+      <strong>Quarterly & yearly discounts up to 30% off!</strong>
+    </p>
   </section>
 
   <!-- BANNER -->
   <section class="banner-section">
     <div class="banner-content">
-      <h2>UNLEASH YOUR POTENTIAL</h2>
-      <a href="#contact" class="main-btn btn-white">Join Today</a>
+      <h2>STOP WAITING. START WINNING.</h2>
+      <p class="banner-subtitle">Your future self will thank you for starting today.</p>
+      <a href="#contact" class="main-btn btn-white">Claim Your Free Trial</a>
     </div>
   </section>
 
   <!-- TRAINERS SECTION -->
   <section id="trainers" class="trainers-section">
     <div class="container p-center">
-      <h3 class="section-label">Our Team</h3>
-      <h2 class="section-title">MEET THE ELITE</h2>
+      <h3 class="section-label">Expert Coaches</h3>
+      <h2 class="section-title">CERTIFIED TRAINERS WHO <span class="accent">DELIVER RESULTS</span></h2>
+      <p class="section-subtitle">Our coaches have helped 5,000+ members achieve their fitness goals.</p>
     </div>
     <div class="trainers-grid container">
       <div class="trainer-card">
@@ -156,7 +354,8 @@
           alt="Trainer 1">
         <div class="trainer-info">
           <h4>Alex Mercer</h4>
-          <p>Head Coach</p>
+          <p>Head Coach • 12 Years Exp</p>
+          <span class="trainer-specialty">Strength & Conditioning</span>
         </div>
       </div>
       <div class="trainer-card">
@@ -164,7 +363,8 @@
           alt="Trainer 2">
         <div class="trainer-info">
           <h4>Sarah Jones</h4>
-          <p>Strength Coach</p>
+          <p>Strength Coach • 8 Years Exp</p>
+          <span class="trainer-specialty">Weight Loss Specialist</span>
         </div>
       </div>
       <div class="trainer-card">
@@ -172,48 +372,133 @@
           alt="Trainer 3">
         <div class="trainer-info">
           <h4>Marcus Webb</h4>
-          <p>Bodybuilding</p>
+          <p>Bodybuilding Coach • 10 Years Exp</p>
+          <span class="trainer-specialty">Muscle Building</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- CTA After Trainers -->
+    <div class="section-cta container">
+      <a href="#contact" class="main-btn">Talk to a Trainer <i class="fas fa-arrow-right"></i></a>
+    </div>
+  </section>
+
+  <!-- TRUST SIGNALS SECTION -->
+  <section id="location" class="trust-section">
+    <div class="container">
+      <div class="trust-grid">
+        <div class="trust-info">
+          <h3 class="section-label">Visit Us</h3>
+          <h2 class="section-title">FIND US <span class="accent">HERE</span></h2>
+
+          <div class="location-details">
+            <div class="location-item">
+              <i class="fas fa-map-marker-alt"></i>
+              <div>
+                <h5>Address</h5>
+                <p>123 Iron Street, Muscle City<br>Near Central Mall, Pin - 400001</p>
+              </div>
+            </div>
+            <div class="location-item">
+              <i class="fas fa-clock"></i>
+              <div>
+                <h5>Operating Hours</h5>
+                <p>Mon - Sat: 5:00 AM - 11:00 PM<br>Sunday: 6:00 AM - 10:00 PM</p>
+              </div>
+            </div>
+            <div class="location-item">
+              <i class="fas fa-phone"></i>
+              <div>
+                <h5>Contact</h5>
+                <p><a href="tel:+919278378772">+91 92783 78772</a><br>join@ironforge.com</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="trust-badges">
+            <div class="trust-badge">
+              <i class="fas fa-shield-alt"></i>
+              <span>Secure Payments</span>
+            </div>
+            <div class="trust-badge">
+              <i class="fas fa-certificate"></i>
+              <span>Certified Trainers</span>
+            </div>
+            <div class="trust-badge">
+              <i class="fas fa-award"></i>
+              <span>12+ Years Trusted</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="map-container">
+          <!-- Google Maps Placeholder -->
+          <div class="map-placeholder">
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3771.755!2d72.87!3d19.07!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTnCsDA0JzEyLjAiTiA3MsKwNTInMTIuMCJF!5e0!3m2!1sen!2sin!4v1"
+              width="100%" height="400" style="border:0; border-radius: 8px;" allowfullscreen="" loading="lazy">
+            </iframe>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- CONTACT SECTION -->
+  <!-- CONTACT SECTION - OPTIMIZED -->
   <section id="contact" class="contact-section">
     <div class="container split-layout">
       <div class="contact-info">
-        <h3 class="section-label">Join The Club</h3>
-        <h2 class="section-title">START YOUR <span class="accent">JOURNEY</span></h2>
-        <p class="section-desc">Stop waiting for the perfect moment. Take the first step today and let us guide you to
-          your best self.</p>
+        <h3 class="section-label">Ready to Transform?</h3>
+        <h2 class="section-title">GET YOUR <span class="accent">FREE TRIAL</span></h2>
+        <p class="section-desc">Fill the form and our team will contact you within 2 hours.
+          <strong>Walk-ins welcome!</strong> Visit us anytime to see our facilities.
+        </p>
+
+        <div class="contact-cta-buttons">
+          <a href="https://wa.me/919278378772?text=Hi!%20I%20want%20to%20book%20a%20free%20trial%20at%20IronForge"
+            class="whatsapp-btn" target="_blank">
+            <i class="fab fa-whatsapp"></i> Chat on WhatsApp
+          </a>
+          <a href="tel:+919278378772" class="call-btn">
+            <i class="fas fa-phone-alt"></i> Call Now: +91 92783 78772
+          </a>
+        </div>
+
         <ul class="contact-details">
           <li><i class="fas fa-map-marker-alt"></i> 123 Iron Street, Muscle City</li>
-          <li><i class="fas fa-phone"></i> +1 (555) 123-4567</li>
-          <li><i class="fas fa-envelope"></i> join@ironforge.com</li>
+          <li><i class="fas fa-clock"></i> Open: 5 AM - 11 PM (Mon-Sat)</li>
         </ul>
       </div>
       <div class="contact-form-wrapper">
+        <h3 class="form-headline">Get a Free 1-Day Trial or Personal Training Consultation</h3>
         <form class="contact-form" id="enquiryForm">
-          <input type="text" id="userName" placeholder="Name" required>
-          <input type="number" id="userAge" placeholder="Age" required min="10" max="100">
+          <input type="text" id="userName" placeholder="Your Name *" required>
+          <input type="tel" id="userPhone" placeholder="Phone Number *" required>
+          <input type="number" id="userAge" placeholder="Age" min="10" max="100">
           <select id="enquiryFor" class="enquiry-select">
             <option value="" disabled selected>Enquiring For</option>
             <option value="Self">Self</option>
             <option value="Couple">Couple</option>
             <option value="Family">Family</option>
-            <option value="Group">Group</option>
+            <option value="Group/Corporate">Group/Corporate</option>
           </select>
           <select id="userGoal">
-            <option value="" disabled selected>Enquiry Topic</option>
-            <option value="Membership Fees">Membership Fees</option>
-            <option value="Muscle Gain">Muscle Gain</option>
+            <option value="" disabled selected>Your Fitness Goal</option>
             <option value="Weight Loss">Weight Loss</option>
+            <option value="Muscle Gain">Muscle Gain</option>
             <option value="General Fitness">General Fitness</option>
             <option value="Personal Training">Personal Training</option>
+            <option value="Membership Fees">Membership Fees</option>
             <option value="Other">Other</option>
           </select>
-          <button type="submit" class="main-btn">Join Now</button>
+          <button type="submit" class="main-btn submit-btn">
+            <i class="fab fa-whatsapp"></i> Send Enquiry via WhatsApp
+          </button>
         </form>
+        <p class="form-reassurance">
+          <i class="fas fa-lock"></i> No spam. Your details are safe with us.
+        </p>
       </div>
     </div>
   </section>
@@ -226,9 +511,10 @@
         <p>Forging elite bodies and unbreakable minds since 2010.</p>
       </div>
       <div class="footer-social">
-        <a href="#"><i class="fab fa-instagram"></i></a>
-        <a href="#"><i class="fab fa-twitter"></i></a>
-        <a href="#"><i class="fab fa-youtube"></i></a>
+        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+        <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+        <a href="https://wa.me/919278378772" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
       </div>
     </div>
     <div class="footer-bottom">
@@ -240,12 +526,31 @@
     </div>
   </footer>
 
-  <a href="tel:+919278378772" class="sticky-call-btn">
-    <i class="fas fa-phone-alt"></i>
+  <!-- STICKY MOBILE CTA BAR -->
+  <div class="mobile-cta-bar">
+    <a href="tel:+919278378772" class="mobile-cta-item">
+      <i class="fas fa-phone-alt"></i>
+      <span>Call</span>
+    </a>
+    <a href="https://wa.me/919278378772?text=Hi!%20I%20want%20to%20know%20about%20IronForge%20membership"
+      class="mobile-cta-item whatsapp" target="_blank">
+      <i class="fab fa-whatsapp"></i>
+      <span>WhatsApp</span>
+    </a>
+    <a href="#contact" class="mobile-cta-item primary">
+      <i class="fas fa-calendar-check"></i>
+      <span>Free Trial</span>
+    </a>
+  </div>
+
+  <!-- Floating WhatsApp Button (Desktop) -->
+  <a href="https://wa.me/919278378772?text=Hi!%20I%20want%20to%20know%20about%20IronForge%20membership"
+    class="sticky-whatsapp-btn" target="_blank" aria-label="Chat on WhatsApp">
+    <i class="fab fa-whatsapp"></i>
   </a>
 
   <!-- JS with timestamp version for cache busting - Update on every deploy -->
-  <script src="script.js?v=20260127135800"></script>
+  <script src="script.js?v=20260128224300"></script>
 </body>
 
 </html>

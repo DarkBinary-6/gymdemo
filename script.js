@@ -75,19 +75,30 @@ if (statsSection) {
 
 // ===== FORM SUBMISSION HANDLER =====
 const form = document.getElementById('enquiryForm');
-form.addEventListener('submit', (e) => {
-  e.preventDefault();
+if (form) {
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
 
-  const name = document.getElementById('userName').value;
-  const age = document.getElementById('userAge').value;
-  const enquiryFor = document.getElementById('enquiryFor').value;
-  const goal = document.getElementById('userGoal').value;
+    const name = document.getElementById('userName').value || 'Not provided';
+    const phone = document.getElementById('userPhone')?.value || 'Not provided';
+    const age = document.getElementById('userAge')?.value || 'Not provided';
+    const enquiryFor = document.getElementById('enquiryFor')?.value || 'Self';
+    const goal = document.getElementById('userGoal')?.value || 'General Enquiry';
 
-  const message = `Hello! I'm ${name}, ${age} years old. I'm enquiring for ${enquiryFor} regarding ${goal}. I'd like to know more about joining IronForge Gym.`;
-  const whatsappURL = `https://wa.me/919278378772?text=${encodeURIComponent(message)}`;
+    const message = `🏋️ *New Enquiry from IronForge Website*
 
-  window.open(whatsappURL, '_blank');
-});
+👤 *Name:* ${name}
+📱 *Phone:* ${phone}
+🎂 *Age:* ${age}
+👥 *Enquiring For:* ${enquiryFor}
+🎯 *Goal:* ${goal}
+
+I'd like to know more about joining IronForge Gym!`;
+
+    const whatsappURL = `https://wa.me/919278378772?text=${encodeURIComponent(message)}`;
+    window.open(whatsappURL, '_blank');
+  });
+}
 
 // ===== GSAP ANIMATIONS =====
 // Register ScrollTrigger plugin
@@ -97,6 +108,8 @@ gsap.registerPlugin(ScrollTrigger);
 // This prevents elements from being stuck invisible on cached page loads
 gsap.set('.hero-content', { opacity: 1, y: 0 });
 gsap.set('.hero-line', { opacity: 1, y: 0, rotationX: 0 });
+gsap.set('.hero-cta-group', { opacity: 1, y: 0 });
+gsap.set('.hero-trust-text', { opacity: 1, y: 0 });
 gsap.set('.program-card', { opacity: 1, y: 0, rotationX: 0 });
 gsap.set('.trainer-card', { opacity: 1, x: 0, scale: 1 });
 gsap.set('.img-box', { opacity: 1, scale: 1, rotationY: 0 });
@@ -108,6 +121,11 @@ gsap.set('.section-label', { opacity: 1, x: 0 });
 gsap.set('.banner-content h2', { opacity: 1, scale: 1, rotation: 0 });
 gsap.set('.banner-content .main-btn', { opacity: 1, y: 0 });
 gsap.set('section', { opacity: 1, y: 0, scale: 1 });
+// New sections
+gsap.set('.testimonial-card', { opacity: 1, y: 0, scale: 1 });
+gsap.set('.pricing-card', { opacity: 1, y: 0, scale: 1 });
+gsap.set('.trust-badge', { opacity: 1, y: 0 });
+gsap.set('.benefit-list li', { opacity: 1, x: 0 });
 
 // Hero parallax effect with enhanced movement
 gsap.to('.hero-bg', {
@@ -398,3 +416,110 @@ programCards.forEach(card => {
   });
 });
 
+// ===== TESTIMONIAL CARDS ANIMATION =====
+gsap.fromTo('.testimonial-card',
+  { opacity: 0, y: 80, scale: 0.9 },
+  {
+    scrollTrigger: {
+      trigger: '.testimonials-grid',
+      start: 'top 80%',
+      toggleActions: 'play none none reverse'
+    },
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    duration: 0.8,
+    stagger: 0.2,
+    ease: 'power3.out'
+  }
+);
+
+// ===== PRICING CARDS ANIMATION =====
+gsap.fromTo('.pricing-card',
+  { opacity: 0, y: 100, rotationX: 15 },
+  {
+    scrollTrigger: {
+      trigger: '.pricing-grid',
+      start: 'top 80%',
+      toggleActions: 'play none none reverse'
+    },
+    opacity: 1,
+    y: 0,
+    rotationX: 0,
+    duration: 0.8,
+    stagger: 0.15,
+    ease: 'power3.out'
+  }
+);
+
+// ===== BENEFIT LIST ANIMATION =====
+gsap.fromTo('.benefit-list li',
+  { opacity: 0, x: -30 },
+  {
+    scrollTrigger: {
+      trigger: '.benefit-list',
+      start: 'top 85%'
+    },
+    opacity: 1,
+    x: 0,
+    duration: 0.5,
+    stagger: 0.1,
+    ease: 'power2.out'
+  }
+);
+
+// ===== TRUST BADGES ANIMATION =====
+gsap.fromTo('.trust-badge',
+  { opacity: 0, y: 30, scale: 0.9 },
+  {
+    scrollTrigger: {
+      trigger: '.trust-badges',
+      start: 'top 85%'
+    },
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    duration: 0.6,
+    stagger: 0.15,
+    ease: 'back.out(1.5)'
+  }
+);
+
+// ===== HERO CTA GROUP ANIMATION =====
+gsap.fromTo('.hero-cta-group',
+  { opacity: 0, y: 40 },
+  {
+    opacity: 1,
+    y: 0,
+    duration: 1,
+    delay: 1.2,
+    ease: 'power3.out'
+  }
+);
+
+gsap.fromTo('.hero-trust-text',
+  { opacity: 0, y: 20 },
+  {
+    opacity: 1,
+    y: 0,
+    duration: 0.8,
+    delay: 1.5,
+    ease: 'power2.out'
+  }
+);
+
+// ===== LOCATION ITEMS ANIMATION =====
+gsap.fromTo('.location-item',
+  { opacity: 0, x: -40 },
+  {
+    scrollTrigger: {
+      trigger: '.location-details',
+      start: 'top 80%'
+    },
+    opacity: 1,
+    x: 0,
+    duration: 0.6,
+    stagger: 0.15,
+    ease: 'power2.out'
+  }
+);
