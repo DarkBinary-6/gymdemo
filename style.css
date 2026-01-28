@@ -1581,6 +1581,14 @@ footer {
     background: #b00710;
 }
 
+.mobile-cta-item.call {
+    background: #0088cc;
+}
+
+.mobile-cta-item.call:hover {
+    background: #006699;
+}
+
 /* --- STICKY WHATSAPP (Desktop) --- */
 .sticky-whatsapp-btn {
     position: fixed;
