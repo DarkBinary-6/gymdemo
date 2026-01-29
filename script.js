@@ -177,22 +177,24 @@ gsap.to('.scroll-indicator', {
 });
 
 // Section animations on scroll with enhanced effects
+// Disable scrub on mobile for smooth scrolling
+const isMobile = window.matchMedia('(max-width: 768px)').matches;
 const sections = gsap.utils.toArray('section');
 sections.forEach((section, index) => {
   gsap.fromTo(section,
-    { opacity: 0, y: 100, scale: 0.95 },
+    { opacity: 0, y: isMobile ? 50 : 100, scale: isMobile ? 1 : 0.95 },
     {
       scrollTrigger: {
         trigger: section,
         start: 'top 85%',
         end: 'top 40%',
         toggleActions: 'play none none reverse',
-        scrub: 0.5
+        scrub: isMobile ? false : 0.5
       },
       opacity: 1,
       y: 0,
       scale: 1,
-      duration: 1.5,
+      duration: isMobile ? 0.8 : 1.5,
       ease: 'power3.out'
     }
   );
@@ -233,21 +235,21 @@ gsap.fromTo('.stat-item',
   }
 );
 
-// Program cards stagger with 3D effect
+// Program cards stagger with 3D effect (simplified on mobile)
 gsap.fromTo('.program-card',
-  { opacity: 0, y: 150, rotationX: 45 },
+  { opacity: 0, y: isMobile ? 40 : 150, rotationX: isMobile ? 0 : 45 },
   {
     scrollTrigger: {
       trigger: '.programs-grid',
-      start: 'top 80%',
+      start: 'top 85%',
       toggleActions: 'play none none reverse'
     },
     opacity: 1,
     y: 0,
     rotationX: 0,
-    duration: 1,
-    stagger: 0.25,
-    ease: 'power4.out'
+    duration: isMobile ? 0.5 : 1,
+    stagger: isMobile ? 0.1 : 0.25,
+    ease: 'power3.out'
   }
 );
 
@@ -434,21 +436,21 @@ gsap.fromTo('.testimonial-card',
   }
 );
 
-// ===== PRICING CARDS ANIMATION =====
+// ===== PRICING CARDS ANIMATION (simplified on mobile) =====
 gsap.fromTo('.pricing-card',
-  { opacity: 0, y: 100, rotationX: 15 },
+  { opacity: 0, y: isMobile ? 30 : 100, rotationX: isMobile ? 0 : 15 },
   {
     scrollTrigger: {
       trigger: '.pricing-grid',
-      start: 'top 80%',
+      start: 'top 85%',
       toggleActions: 'play none none reverse'
     },
     opacity: 1,
     y: 0,
     rotationX: 0,
-    duration: 0.8,
-    stagger: 0.15,
-    ease: 'power3.out'
+    duration: isMobile ? 0.4 : 0.8,
+    stagger: isMobile ? 0.08 : 0.15,
+    ease: 'power2.out'
   }
 );
 
