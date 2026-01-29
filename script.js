@@ -146,8 +146,8 @@ gsap.fromTo('.hero-content',
   {
     opacity: 1,
     y: 0,
-    duration: 1.2,
-    delay: 0.3,
+    duration: 0.8,
+    delay: 0.2,
     ease: 'power4.out'
   }
 );
@@ -160,9 +160,9 @@ gsap.fromTo('.hero-line',
     y: 0,
     rotationX: 0,
     transformOrigin: 'top center',
-    duration: 1.2,
-    stagger: 0.3,
-    delay: 0.6,
+    duration: 0.8,
+    stagger: 0.2,
+    delay: 0.4,
     ease: 'back.out(1.7)'
   }
 );
@@ -206,7 +206,7 @@ sections.forEach((section, index) => {
       opacity: 1,
       y: 0,
       scale: 1,
-      duration: isMobile ? 0.4 : 1.5,
+      duration: isMobile ? 0.3 : 0.8,
       ease: isMobile ? 'power2.out' : 'power3.out'
     }
   );
@@ -259,8 +259,8 @@ gsap.fromTo('.program-card',
     opacity: 1,
     y: 0,
     rotationX: 0,
-    duration: isMobile ? 0.5 : 1,
-    stagger: isMobile ? 0.1 : 0.25,
+    duration: isMobile ? 0.35 : 0.7,
+    stagger: isMobile ? 0.08 : 0.15,
     ease: 'power3.out'
   }
 );
@@ -460,8 +460,8 @@ gsap.fromTo('.pricing-card',
     opacity: 1,
     y: 0,
     rotationX: 0,
-    duration: isMobile ? 0.4 : 0.8,
-    stagger: isMobile ? 0.08 : 0.15,
+    duration: isMobile ? 0.3 : 0.5,
+    stagger: isMobile ? 0.06 : 0.1,
     ease: 'power2.out'
   }
 );
