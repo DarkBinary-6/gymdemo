@@ -1801,6 +1801,22 @@ footer {
         overflow: visible;
     }
 
+    /* SCROLL TRAP FIX for Programme cards: card-bg and card-content overlay the card */
+    .card-bg,
+    .card-content,
+    .trainer-info {
+        touch-action: pan-y !important;
+        pointer-events: none;
+    }
+
+    /* Re-enable pointer events only for interactive elements */
+    .card-content a,
+    .card-content button,
+    .trainer-info a,
+    .trainer-info button {
+        pointer-events: auto;
+    }
+
     /* Disable complex hover effects that cause repaints during scroll */
     .program-card:hover,
     .trainer-card:hover,
