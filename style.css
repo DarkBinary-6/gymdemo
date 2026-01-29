@@ -1748,125 +1748,36 @@ footer {
 }
 
 /* ========================================
-   MOBILE SCROLL PERFORMANCE OPTIMIZATIONS
-   FIXED: Simpler approach that doesn't break scrolling
+   MOBILE SCROLL PERFORMANCE - MINIMAL SAFE VERSION
    ======================================== */
-
-/* Universal smooth scrolling */
-html {
-    scroll-behavior: smooth;
-}
 
 @media (max-width: 768px) {
 
-    /* === Simple mobile scroll optimization === */
-    html,
-    body {
-        /* Allow normal scrolling */
-        -webkit-overflow-scrolling: touch;
-        touch-action: manipulation;
-        -webkit-tap-highlight-color: transparent;
-    }
-
-    /* Prevent horizontal scroll only */
-    body {
-        overflow-x: hidden;
-    }
-
-    /* === Disable fixed background - main lag source === */
+    /* Only disable fixed background - proven lag source on mobile */
     .banner-section {
         background-attachment: scroll !important;
     }
 
-    /* === Disable heavy animations === */
+    /* Disable animated background gradient */
     body::before {
-        animation: none !important;
-        opacity: 0.3;
+        animation: none;
     }
 
-    /* === Simplify card rendering for smooth scroll === */
-    .program-card,
-    .trainer-card,
-    .pricing-card,
-    .testimonial-card {
-        /* Remove complex transforms */
-        transform: none !important;
-        will-change: auto;
-        transition: opacity 0.2s ease;
-    }
-
-    /* Disable hover effects on mobile */
-    .program-card:hover,
-    .trainer-card:hover,
-    .pricing-card:hover,
-    .testimonial-card:hover,
-    .pricing-card.recommended,
-    .testimonial-card.featured {
-        transform: none !important;
-        box-shadow: none;
-    }
-
-    /* === Images optimization === */
-    .hero-bg,
-    .card-bg {
-        transform: none !important;
-        will-change: auto;
-    }
-
-    /* Disable image hover zoom */
-    .program-card:hover .card-bg,
-    .trainer-card:hover img {
-        transform: none !important;
-    }
-
-    /* === Button optimization === */
-    .main-btn:hover,
-    .cta-btn:hover {
-        transform: none !important;
-    }
-
-    /* === Navbar blur optimization === */
-    .navbar {
-        backdrop-filter: blur(5px);
-        -webkit-backdrop-filter: blur(5px);
-    }
-
-    /* === Single column grids on mobile === */
+    /* Single column grids */
     .pricing-grid,
     .programs-grid,
     .trainers-grid,
     .testimonials-grid {
-        display: grid;
         grid-template-columns: 1fr;
-        gap: 20px;
     }
 }
 
-/* Additional performance for very small screens */
 @media (max-width: 480px) {
-
-    /* Reduce animation durations */
-    *,
-    *::before,
-    *::after {
-        animation-duration: 0.2s !important;
-        transition-duration: 0.15s !important;
-    }
-
-    /* Hide scroll indicator */
     .scroll-indicator {
         display: none;
     }
 
-    /* Simpler section padding */
     section {
         padding: 60px 0;
-    }
-
-    /* Auto height cards */
-    .program-card,
-    .trainer-card {
-        height: auto;
-        min-height: 400px;
     }
 }

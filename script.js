@@ -182,65 +182,31 @@ const isMobile = window.matchMedia('(max-width: 768px)').matches ||
   window.matchMedia('(pointer: coarse)').matches ||
   'ontouchstart' in window;
 
-// Mobile-optimized ScrollTrigger settings - AGGRESSIVE OPTIMIZATION
+// Mobile-optimized ScrollTrigger settings
 if (isMobile) {
   ScrollTrigger.config({
     limitCallbacks: true,
-    ignoreMobileResize: true,
-    // Reduce scroll event frequency for smoother performance
-    syncInterval: 60
-  });
-
-  // Kill hero parallax on mobile - major lag source
-  ScrollTrigger.getAll().forEach(trigger => {
-    if (trigger.vars?.trigger === '.hero') {
-      trigger.kill();
-    }
+    ignoreMobileResize: true
   });
 }
 
+// Section animations - simple and safe
 const sections = gsap.utils.toArray('section');
-sections.forEach((section, index) => {
-  // MOBILE: Much simpler animation to prevent scroll lag
-  if (isMobile) {
-    // Just fade in without any scroll-based updates
-    gsap.set(section, { opacity: 1, y: 0 }); // Ensure visible immediately
-    gsap.fromTo(section,
-      { opacity: 0 },
-      {
-        scrollTrigger: {
-          trigger: section,
-          start: 'top 95%',
-          toggleActions: 'play none none none',
-          // NO scrub, NO continuous updates
-          scrub: false,
-          once: true // Only animate once, then release
-        },
-        opacity: 1,
-        duration: 0.3,
-        ease: 'power1.out'
-      }
-    );
-  } else {
-    // Desktop: Full animation
-    gsap.fromTo(section,
-      { opacity: 0, y: 100, scale: 1 },
-      {
-        scrollTrigger: {
-          trigger: section,
-          start: 'top 90%',
-          end: 'top 50%',
-          toggleActions: 'play none none none',
-          scrub: false
-        },
-        opacity: 1,
-        y: 0,
-        scale: 1,
-        duration: 1.5,
-        ease: 'power3.out'
-      }
-    );
-  }
+sections.forEach((section) => {
+  gsap.fromTo(section,
+    { opacity: 0, y: 50 },
+    {
+      scrollTrigger: {
+        trigger: section,
+        start: 'top 85%',
+        toggleActions: 'play none none none'
+      },
+      opacity: 1,
+      y: 0,
+      duration: 0.6,
+      ease: 'power2.out'
+    }
+  );
 });
 
 // About images animation with 3D rotation
@@ -278,55 +244,39 @@ gsap.fromTo('.stat-item',
   }
 );
 
-// Program cards stagger with 3D effect (DISABLED on mobile for smooth scroll)
-if (!isMobile) {
-  gsap.fromTo('.program-card',
-    { opacity: 0, y: 150, rotationX: 45 },
-    {
-      scrollTrigger: {
-        trigger: '.programs-grid',
-        start: 'top 85%',
-        toggleActions: 'play none none reverse'
-      },
-      opacity: 1,
-      y: 0,
-      rotationX: 0,
-      duration: 1,
-      stagger: 0.25,
-      ease: 'power3.out'
-    }
-  );
-} else {
-  // Mobile: Simple fade-in, no scroll jank
-  gsap.set('.program-card', { opacity: 1 });
-}
+// Program cards animation
+gsap.fromTo('.program-card',
+  { opacity: 0, y: 60 },
+  {
+    scrollTrigger: {
+      trigger: '.programs-grid',
+      start: 'top 85%',
+      toggleActions: 'play none none none'
+    },
+    opacity: 1,
+    y: 0,
+    duration: 0.6,
+    stagger: 0.15,
+    ease: 'power2.out'
+  }
+);
 
-// Trainer cards animation with slide and fade (DISABLED on mobile)
-if (!isMobile) {
-  const trainerCards = gsap.utils.toArray('.trainer-card');
-  trainerCards.forEach((card, index) => {
-    const xFrom = index % 2 === 0 ? -100 : 100;
-    gsap.fromTo(card,
-      { opacity: 0, x: xFrom, scale: 0.8 },
-      {
-        scrollTrigger: {
-          trigger: '.trainers-grid',
-          start: 'top 80%',
-          toggleActions: 'play none none reverse'
-        },
-        opacity: 1,
-        x: 0,
-        scale: 1,
-        duration: 1,
-        delay: index * 0.2,
-        ease: 'power3.out'
-      }
-    );
-  });
-} else {
-  // Mobile: Simple visibility, no scroll jank
-  gsap.set('.trainer-card', { opacity: 1, x: 0, scale: 1 });
-}
+// Trainer cards animation
+gsap.fromTo('.trainer-card',
+  { opacity: 0, y: 60 },
+  {
+    scrollTrigger: {
+      trigger: '.trainers-grid',
+      start: 'top 85%',
+      toggleActions: 'play none none none'
+    },
+    opacity: 1,
+    y: 0,
+    duration: 0.6,
+    stagger: 0.15,
+    ease: 'power2.out'
+  }
+);
 
 // Banner text animation with elastic bounce
 gsap.fromTo('.banner-content h2',
@@ -471,50 +421,39 @@ programCards.forEach(card => {
   });
 });
 
-// ===== TESTIMONIAL CARDS ANIMATION (DISABLED on mobile) =====
-if (!isMobile) {
-  gsap.fromTo('.testimonial-card',
-    { opacity: 0, y: 80, scale: 0.9 },
-    {
-      scrollTrigger: {
-        trigger: '.testimonials-grid',
-        start: 'top 80%',
-        toggleActions: 'play none none reverse'
-      },
-      opacity: 1,
-      y: 0,
-      scale: 1,
-      duration: 0.8,
-      stagger: 0.2,
-      ease: 'power3.out'
-    }
-  );
-} else {
-  gsap.set('.testimonial-card', { opacity: 1, y: 0, scale: 1 });
-}
+// ===== TESTIMONIAL CARDS ANIMATION =====
+gsap.fromTo('.testimonial-card',
+  { opacity: 0, y: 50 },
+  {
+    scrollTrigger: {
+      trigger: '.testimonials-grid',
+      start: 'top 85%',
+      toggleActions: 'play none none none'
+    },
+    opacity: 1,
+    y: 0,
+    duration: 0.6,
+    stagger: 0.15,
+    ease: 'power2.out'
+  }
+);
 
-// ===== PRICING CARDS ANIMATION (DISABLED on mobile for smooth scroll) =====
-if (!isMobile) {
-  gsap.fromTo('.pricing-card',
-    { opacity: 0, y: 100, rotationX: 15 },
-    {
-      scrollTrigger: {
-        trigger: '.pricing-grid',
-        start: 'top 85%',
-        toggleActions: 'play none none reverse'
-      },
-      opacity: 1,
-      y: 0,
-      rotationX: 0,
-      duration: 0.8,
-      stagger: 0.15,
-      ease: 'power2.out'
-    }
-  );
-} else {
-  // Mobile: Cards visible immediately, no scroll jank
-  gsap.set('.pricing-card', { opacity: 1, y: 0, rotationX: 0 });
-}
+// ===== PRICING CARDS ANIMATION =====
+gsap.fromTo('.pricing-card',
+  { opacity: 0, y: 50 },
+  {
+    scrollTrigger: {
+      trigger: '.pricing-grid',
+      start: 'top 85%',
+      toggleActions: 'play none none none'
+    },
+    opacity: 1,
+    y: 0,
+    duration: 0.6,
+    stagger: 0.15,
+    ease: 'power2.out'
+  }
+);
 
 // ===== BENEFIT LIST ANIMATION =====
 gsap.fromTo('.benefit-list li',
