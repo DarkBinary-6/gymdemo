@@ -1778,6 +1778,16 @@ footer {
         -webkit-backface-visibility: hidden;
     }
 
+    /* SCROLL TRAP FIX: Allow vertical page scroll on grid containers */
+    .programs-grid,
+    .trainers-grid,
+    .pricing-grid,
+    .testimonials-grid {
+        touch-action: pan-y !important;
+        -webkit-overflow-scrolling: touch;
+        overflow: visible;
+    }
+
     /* Optimize cards for smoother scrolling */
     .program-card,
     .trainer-card,
@@ -1786,6 +1796,9 @@ footer {
         transform: translateZ(0);
         -webkit-transform: translateZ(0);
         will-change: auto;
+        /* CRITICAL: Allow vertical scrolling on cards */
+        touch-action: pan-y !important;
+        overflow: visible;
     }
 
     /* Disable complex hover effects that cause repaints during scroll */
