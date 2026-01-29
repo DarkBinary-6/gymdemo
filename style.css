@@ -1809,6 +1809,18 @@ footer {
         pointer-events: none;
     }
 
+    /* CRITICAL: Disable the ::after glow overlay touch events */
+    .program-card::after {
+        pointer-events: none !important;
+        display: none;
+    }
+
+    /* Remove cursor: pointer on mobile - causes touch issues */
+    .program-card,
+    .trainer-card {
+        cursor: default;
+    }
+
     /* Re-enable pointer events only for interactive elements */
     .card-content a,
     .card-content button,
