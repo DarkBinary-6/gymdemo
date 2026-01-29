@@ -1749,7 +1749,7 @@ footer {
 
 /* ========================================
    MOBILE SCROLL PERFORMANCE OPTIMIZATIONS
-   CRITICAL: Fix nested scrolling & lag
+   FIXED: Simpler approach that doesn't break scrolling
    ======================================== */
 
 /* Universal smooth scrolling */
@@ -1759,93 +1759,43 @@ html {
 
 @media (max-width: 768px) {
 
-    /* === CRITICAL: Root scroll container optimization === */
-    html {
-        /* Native smooth scrolling on mobile */
-        scroll-behavior: smooth;
-        overflow-x: hidden;
-        overflow-y: auto;
-        /* Prevent scroll chaining to parent */
-        overscroll-behavior-y: contain;
-    }
-
+    /* === Simple mobile scroll optimization === */
+    html,
     body {
-        overflow-x: hidden;
-        /* Let html handle vertical scroll */
-        overflow-y: visible;
-        /* Prevent rubber-banding issues */
-        overscroll-behavior: none;
-        /* iOS smooth scroll */
+        /* Allow normal scrolling */
         -webkit-overflow-scrolling: touch;
-        /* Only pan vertically for smooth mobile gesture */
-        touch-action: pan-y;
+        touch-action: manipulation;
         -webkit-tap-highlight-color: transparent;
     }
 
-    /* === CRITICAL: Remove ALL nested scroll containers === */
-    /* This is the fix for sections getting "stuck" */
-    .pricing-section,
-    .pricing-grid,
-    .programs-section,
-    .programs-grid,
-    .trainers-section,
-    .trainers-grid,
-    .testimonials-section,
-    .testimonials-grid,
-    .about-section,
-    .contact-section,
-    .trust-section,
-    .banner-section {
-        /* NEVER create scroll containers */
-        overflow: visible !important;
-        overflow-x: visible !important;
-        overflow-y: visible !important;
-        /* No max-height that could trigger scroll */
-        max-height: none !important;
-        height: auto !important;
-    }
-
-    /* Ensure containers don't create scroll traps */
-    .container {
-        overflow: visible !important;
+    /* Prevent horizontal scroll only */
+    body {
         overflow-x: hidden;
-        overflow-y: visible !important;
     }
 
-    /* Section should flow naturally */
-    section {
-        overflow: visible !important;
-        transform: none !important;
-        will-change: auto;
-    }
-
-    /* === CRITICAL: Disable fixed background attachment === */
+    /* === Disable fixed background - main lag source === */
     .banner-section {
         background-attachment: scroll !important;
     }
 
-    /* === Disable heavy animations for scroll performance === */
+    /* === Disable heavy animations === */
     body::before {
         animation: none !important;
         opacity: 0.3;
-        /* Reduce even more for perf */
     }
 
-    /* === Simplify card rendering === */
+    /* === Simplify card rendering for smooth scroll === */
     .program-card,
     .trainer-card,
     .pricing-card,
     .testimonial-card {
-        /* No transforms that create compositor layers */
+        /* Remove complex transforms */
         transform: none !important;
         will-change: auto;
-        /* Simpler transitions */
         transition: opacity 0.2s ease;
-        /* Ensure no scroll container */
-        overflow: visible !important;
     }
 
-    /* Disable all hover transforms on mobile */
+    /* Disable hover effects on mobile */
     .program-card:hover,
     .trainer-card:hover,
     .pricing-card:hover,
@@ -1857,22 +1807,13 @@ html {
     }
 
     /* === Images optimization === */
-    img {
-        /* Remove GPU layers from images during scroll */
-        transform: none;
-        will-change: auto;
-    }
-
-    .hero-bg {
-        transform: none !important;
-        will-change: auto;
-    }
-
+    .hero-bg,
     .card-bg {
         transform: none !important;
+        will-change: auto;
     }
 
-    /* Disable image hover zoom on mobile */
+    /* Disable image hover zoom */
     .program-card:hover .card-bg,
     .trainer-card:hover img {
         transform: none !important;
@@ -1880,26 +1821,17 @@ html {
 
     /* === Button optimization === */
     .main-btn:hover,
-    .cta-btn:hover,
-    .main-btn::after,
-    .cta-btn::before {
+    .cta-btn:hover {
         transform: none !important;
     }
 
-    /* === Navbar optimization === */
+    /* === Navbar blur optimization === */
     .navbar {
-        /* Simpler blur for iOS performance */
         backdrop-filter: blur(5px);
         -webkit-backdrop-filter: blur(5px);
     }
 
-    /* === Disable parallax completely === */
-    [data-parallax],
-    .parallax {
-        transform: none !important;
-    }
-
-    /* === Ensure grids don't create horizontal scroll === */
+    /* === Single column grids on mobile === */
     .pricing-grid,
     .programs-grid,
     .trainers-grid,
@@ -1907,15 +1839,13 @@ html {
         display: grid;
         grid-template-columns: 1fr;
         gap: 20px;
-        width: 100%;
-        max-width: 100%;
     }
 }
 
 /* Additional performance for very small screens */
 @media (max-width: 480px) {
 
-    /* Reduce all animation durations significantly */
+    /* Reduce animation durations */
     *,
     *::before,
     *::after {
@@ -1923,7 +1853,7 @@ html {
         transition-duration: 0.15s !important;
     }
 
-    /* Disable scroll indicator completely */
+    /* Hide scroll indicator */
     .scroll-indicator {
         display: none;
     }
@@ -1933,7 +1863,7 @@ html {
         padding: 60px 0;
     }
 
-    /* Even simpler cards */
+    /* Auto height cards */
     .program-card,
     .trainer-card {
         height: auto;
