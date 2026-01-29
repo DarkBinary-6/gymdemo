@@ -188,29 +188,34 @@ if (isMobile) {
     limitCallbacks: true,
     ignoreMobileResize: true
   });
+
+  // PERFORMANCE: Kill all ScrollTrigger instances on mobile for smooth scrolling
+  ScrollTrigger.getAll().forEach(st => st.kill());
 }
 
-const sections = gsap.utils.toArray('section');
-sections.forEach((section, index) => {
-  gsap.fromTo(section,
-    { opacity: 0, y: isMobile ? 30 : 100, scale: 1 },
-    {
-      scrollTrigger: {
-        trigger: section,
-        start: 'top 90%',
-        end: 'top 50%',
-        toggleActions: 'play none none none',
-        // CRITICAL: Disable scrub on mobile - causes jerky scrolling
-        scrub: false
-      },
-      opacity: 1,
-      y: 0,
-      scale: 1,
-      duration: isMobile ? 0.3 : 0.8,
-      ease: isMobile ? 'power2.out' : 'power3.out'
-    }
-  );
-});
+// Section animations on scroll - DISABLED ON MOBILE for performance
+if (!isMobile) {
+  const sections = gsap.utils.toArray('section');
+  sections.forEach((section, index) => {
+    gsap.fromTo(section,
+      { opacity: 0, y: 100, scale: 1 },
+      {
+        scrollTrigger: {
+          trigger: section,
+          start: 'top 90%',
+          end: 'top 50%',
+          toggleActions: 'play none none none',
+          scrub: false
+        },
+        opacity: 1,
+        y: 0,
+        scale: 1,
+        duration: 0.8,
+        ease: 'power3.out'
+      }
+    );
+  });
+}
 
 // About images animation with 3D rotation
 gsap.fromTo('.img-box',
@@ -247,45 +252,49 @@ gsap.fromTo('.stat-item',
   }
 );
 
-// Program cards stagger with 3D effect (simplified on mobile)
-gsap.fromTo('.program-card',
-  { opacity: 0, y: isMobile ? 40 : 150, rotationX: isMobile ? 0 : 45 },
-  {
-    scrollTrigger: {
-      trigger: '.programs-grid',
-      start: 'top 85%',
-      toggleActions: 'play none none reverse'
-    },
-    opacity: 1,
-    y: 0,
-    rotationX: 0,
-    duration: isMobile ? 0.35 : 0.7,
-    stagger: isMobile ? 0.08 : 0.15,
-    ease: 'power3.out'
-  }
-);
-
-// Trainer cards animation with slide and fade
-const trainerCards = gsap.utils.toArray('.trainer-card');
-trainerCards.forEach((card, index) => {
-  const xFrom = index % 2 === 0 ? -100 : 100;
-  gsap.fromTo(card,
-    { opacity: 0, x: xFrom, scale: 0.8 },
+// Program cards stagger with 3D effect - DISABLED ON MOBILE
+if (!isMobile) {
+  gsap.fromTo('.program-card',
+    { opacity: 0, y: 150, rotationX: 45 },
     {
       scrollTrigger: {
-        trigger: '.trainers-grid',
-        start: 'top 80%',
+        trigger: '.programs-grid',
+        start: 'top 85%',
         toggleActions: 'play none none reverse'
       },
       opacity: 1,
-      x: 0,
-      scale: 1,
-      duration: 1,
-      delay: index * 0.2,
+      y: 0,
+      rotationX: 0,
+      duration: 0.7,
+      stagger: 0.15,
       ease: 'power3.out'
     }
   );
-});
+}
+
+// Trainer cards animation - DISABLED ON MOBILE
+if (!isMobile) {
+  const trainerCards = gsap.utils.toArray('.trainer-card');
+  trainerCards.forEach((card, index) => {
+    const xFrom = index % 2 === 0 ? -100 : 100;
+    gsap.fromTo(card,
+      { opacity: 0, x: xFrom, scale: 0.8 },
+      {
+        scrollTrigger: {
+          trigger: '.trainers-grid',
+          start: 'top 80%',
+          toggleActions: 'play none none reverse'
+        },
+        opacity: 1,
+        x: 0,
+        scale: 1,
+        duration: 0.7,
+        delay: index * 0.15,
+        ease: 'power3.out'
+      }
+    );
+  });
+}
 
 // Banner text animation with elastic bounce
 gsap.fromTo('.banner-content h2',
@@ -448,23 +457,25 @@ gsap.fromTo('.testimonial-card',
   }
 );
 
-// ===== PRICING CARDS ANIMATION (simplified on mobile) =====
-gsap.fromTo('.pricing-card',
-  { opacity: 0, y: isMobile ? 30 : 100, rotationX: isMobile ? 0 : 15 },
-  {
-    scrollTrigger: {
-      trigger: '.pricing-grid',
-      start: 'top 85%',
-      toggleActions: 'play none none reverse'
-    },
-    opacity: 1,
-    y: 0,
-    rotationX: 0,
-    duration: isMobile ? 0.3 : 0.5,
-    stagger: isMobile ? 0.06 : 0.1,
-    ease: 'power2.out'
-  }
-);
+// ===== PRICING CARDS ANIMATION - DISABLED ON MOBILE =====
+if (!isMobile) {
+  gsap.fromTo('.pricing-card',
+    { opacity: 0, y: 100, rotationX: 15 },
+    {
+      scrollTrigger: {
+        trigger: '.pricing-grid',
+        start: 'top 85%',
+        toggleActions: 'play none none reverse'
+      },
+      opacity: 1,
+      y: 0,
+      rotationX: 0,
+      duration: 0.5,
+      stagger: 0.1,
+      ease: 'power2.out'
+    }
+  );
+}
 
 // ===== BENEFIT LIST ANIMATION =====
 gsap.fromTo('.benefit-list li',

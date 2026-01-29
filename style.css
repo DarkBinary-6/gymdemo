@@ -1757,10 +1757,26 @@ footer {
         background-attachment: scroll !important;
     }
 
-    /* Disable animated background gradient on mobile for performance */
+    /* PERFORMANCE: Completely disable animated background on mobile */
     body::before {
-        animation: none !important;
-        opacity: 0.5;
+        display: none !important;
+    }
+
+    /* PERFORMANCE: Disable backdrop-filter - very expensive on mobile */
+    .navbar {
+        backdrop-filter: none !important;
+        -webkit-backdrop-filter: none !important;
+        background: rgba(5, 5, 5, 0.98) !important;
+    }
+
+    /* PERFORMANCE: Disable all CSS transitions on mobile for 60fps scroll */
+    .program-card,
+    .trainer-card,
+    .pricing-card,
+    .testimonial-card,
+    .img-box,
+    .stat-item {
+        transition: none !important;
     }
 
     /* Add touch-action for smooth scrolling gestures */
@@ -1770,10 +1786,9 @@ footer {
         -webkit-tap-highlight-color: transparent;
     }
 
-    /* GPU acceleration for sections */
+    /* PERFORMANCE: Disable transforms that aren't needed */
     section {
-        transform: translateZ(0);
-        -webkit-transform: translateZ(0);
+        transform: none !important;
         backface-visibility: hidden;
         -webkit-backface-visibility: hidden;
     }
@@ -1829,33 +1844,25 @@ footer {
         pointer-events: auto;
     }
 
-    /* Disable complex hover effects that cause repaints during scroll */
+    /* PERFORMANCE: Disable all hover effects on mobile */
     .program-card:hover,
     .trainer-card:hover,
     .pricing-card:hover,
-    .testimonial-card:hover {
-        transform: translateZ(0);
-        box-shadow: none;
-    }
-
-    /* Simplify transitions for scroll performance */
-    .program-card,
-    .trainer-card,
-    .pricing-card,
-    .testimonial-card {
-        transition: none;
-    }
-
-    /* Optimize images for smooth scroll */
-    img {
-        transform: translateZ(0);
-        -webkit-transform: translateZ(0);
-    }
-
-    /* Disable hover scale effects on mobile */
+    .testimonial-card:hover,
     .main-btn:hover,
     .cta-btn:hover {
-        transform: none;
+        transform: none !important;
+        box-shadow: none !important;
+    }
+
+    /* PERFORMANCE: Simplify card backgrounds */
+    .card-bg {
+        transition: none !important;
+    }
+
+    .program-card:hover .card-bg,
+    .trainer-card:hover img {
+        transform: none !important;
     }
 
     /* Optimize hero background */
@@ -1864,15 +1871,15 @@ footer {
         will-change: auto;
     }
 
-    /* Reduce navbar effects */
-    .navbar {
-        backdrop-filter: blur(5px);
-        -webkit-backdrop-filter: blur(5px);
+    /* PERFORMANCE: Disable filter effects */
+    .img-box img,
+    .trainer-card img {
+        filter: none !important;
     }
 
     /* Prevent mobile elastic/rubber-band scrolling issues */
     .container {
-        transform: translateZ(0);
+        transform: none !important;
     }
 }
 
