@@ -190,21 +190,24 @@ if (isMobile) {
   });
 }
 
-// Section animations - simple and safe
 const sections = gsap.utils.toArray('section');
-sections.forEach((section) => {
+sections.forEach((section, index) => {
   gsap.fromTo(section,
-    { opacity: 0, y: 50 },
+    { opacity: 0, y: isMobile ? 30 : 100, scale: 1 },
     {
       scrollTrigger: {
         trigger: section,
-        start: 'top 85%',
-        toggleActions: 'play none none none'
+        start: 'top 90%',
+        end: 'top 50%',
+        toggleActions: 'play none none none',
+        // CRITICAL: Disable scrub on mobile - causes jerky scrolling
+        scrub: false
       },
       opacity: 1,
       y: 0,
-      duration: 0.6,
-      ease: 'power2.out'
+      scale: 1,
+      duration: isMobile ? 0.4 : 1.5,
+      ease: isMobile ? 'power2.out' : 'power3.out'
     }
   );
 });
@@ -244,39 +247,45 @@ gsap.fromTo('.stat-item',
   }
 );
 
-// Program cards animation
+// Program cards stagger with 3D effect (simplified on mobile)
 gsap.fromTo('.program-card',
-  { opacity: 0, y: 60 },
+  { opacity: 0, y: isMobile ? 40 : 150, rotationX: isMobile ? 0 : 45 },
   {
     scrollTrigger: {
       trigger: '.programs-grid',
       start: 'top 85%',
-      toggleActions: 'play none none none'
+      toggleActions: 'play none none reverse'
     },
     opacity: 1,
     y: 0,
-    duration: 0.6,
-    stagger: 0.15,
-    ease: 'power2.out'
+    rotationX: 0,
+    duration: isMobile ? 0.5 : 1,
+    stagger: isMobile ? 0.1 : 0.25,
+    ease: 'power3.out'
   }
 );
 
-// Trainer cards animation
-gsap.fromTo('.trainer-card',
-  { opacity: 0, y: 60 },
-  {
-    scrollTrigger: {
-      trigger: '.trainers-grid',
-      start: 'top 85%',
-      toggleActions: 'play none none none'
-    },
-    opacity: 1,
-    y: 0,
-    duration: 0.6,
-    stagger: 0.15,
-    ease: 'power2.out'
-  }
-);
+// Trainer cards animation with slide and fade
+const trainerCards = gsap.utils.toArray('.trainer-card');
+trainerCards.forEach((card, index) => {
+  const xFrom = index % 2 === 0 ? -100 : 100;
+  gsap.fromTo(card,
+    { opacity: 0, x: xFrom, scale: 0.8 },
+    {
+      scrollTrigger: {
+        trigger: '.trainers-grid',
+        start: 'top 80%',
+        toggleActions: 'play none none reverse'
+      },
+      opacity: 1,
+      x: 0,
+      scale: 1,
+      duration: 1,
+      delay: index * 0.2,
+      ease: 'power3.out'
+    }
+  );
+});
 
 // Banner text animation with elastic bounce
 gsap.fromTo('.banner-content h2',
@@ -423,34 +432,36 @@ programCards.forEach(card => {
 
 // ===== TESTIMONIAL CARDS ANIMATION =====
 gsap.fromTo('.testimonial-card',
-  { opacity: 0, y: 50 },
+  { opacity: 0, y: 80, scale: 0.9 },
   {
     scrollTrigger: {
       trigger: '.testimonials-grid',
-      start: 'top 85%',
-      toggleActions: 'play none none none'
+      start: 'top 80%',
+      toggleActions: 'play none none reverse'
     },
     opacity: 1,
     y: 0,
-    duration: 0.6,
-    stagger: 0.15,
-    ease: 'power2.out'
+    scale: 1,
+    duration: 0.8,
+    stagger: 0.2,
+    ease: 'power3.out'
   }
 );
 
-// ===== PRICING CARDS ANIMATION =====
+// ===== PRICING CARDS ANIMATION (simplified on mobile) =====
 gsap.fromTo('.pricing-card',
-  { opacity: 0, y: 50 },
+  { opacity: 0, y: isMobile ? 30 : 100, rotationX: isMobile ? 0 : 15 },
   {
     scrollTrigger: {
       trigger: '.pricing-grid',
       start: 'top 85%',
-      toggleActions: 'play none none none'
+      toggleActions: 'play none none reverse'
     },
     opacity: 1,
     y: 0,
-    duration: 0.6,
-    stagger: 0.15,
+    rotationX: 0,
+    duration: isMobile ? 0.4 : 0.8,
+    stagger: isMobile ? 0.08 : 0.15,
     ease: 'power2.out'
   }
 );

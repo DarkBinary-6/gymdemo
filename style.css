@@ -1748,36 +1748,108 @@ footer {
 }
 
 /* ========================================
-   MOBILE SCROLL PERFORMANCE - MINIMAL SAFE VERSION
+   MOBILE SCROLL PERFORMANCE OPTIMIZATIONS
    ======================================== */
-
 @media (max-width: 768px) {
 
-    /* Only disable fixed background - proven lag source on mobile */
+    /* CRITICAL: Disable fixed background attachment - major cause of scroll lag on mobile */
     .banner-section {
         background-attachment: scroll !important;
     }
 
-    /* Disable animated background gradient */
+    /* Disable animated background gradient on mobile for performance */
     body::before {
-        animation: none;
+        animation: none !important;
+        opacity: 0.5;
     }
 
-    /* Single column grids */
-    .pricing-grid,
-    .programs-grid,
-    .trainers-grid,
-    .testimonials-grid {
-        grid-template-columns: 1fr;
+    /* Add touch-action for smooth scrolling gestures */
+    html,
+    body {
+        touch-action: pan-y;
+        -webkit-tap-highlight-color: transparent;
+    }
+
+    /* GPU acceleration for sections */
+    section {
+        transform: translateZ(0);
+        -webkit-transform: translateZ(0);
+        backface-visibility: hidden;
+        -webkit-backface-visibility: hidden;
+    }
+
+    /* Optimize cards for smoother scrolling */
+    .program-card,
+    .trainer-card,
+    .pricing-card,
+    .testimonial-card {
+        transform: translateZ(0);
+        -webkit-transform: translateZ(0);
+        will-change: auto;
+    }
+
+    /* Disable complex hover effects that cause repaints during scroll */
+    .program-card:hover,
+    .trainer-card:hover,
+    .pricing-card:hover,
+    .testimonial-card:hover {
+        transform: translateZ(0);
+        box-shadow: none;
+    }
+
+    /* Simplify transitions for scroll performance */
+    .program-card,
+    .trainer-card,
+    .pricing-card,
+    .testimonial-card {
+        transition: none;
+    }
+
+    /* Optimize images for smooth scroll */
+    img {
+        transform: translateZ(0);
+        -webkit-transform: translateZ(0);
+    }
+
+    /* Disable hover scale effects on mobile */
+    .main-btn:hover,
+    .cta-btn:hover {
+        transform: none;
+    }
+
+    /* Optimize hero background */
+    .hero-bg {
+        transform: none !important;
+        will-change: auto;
+    }
+
+    /* Reduce navbar effects */
+    .navbar {
+        backdrop-filter: blur(5px);
+        -webkit-backdrop-filter: blur(5px);
+    }
+
+    /* Prevent mobile elastic/rubber-band scrolling issues */
+    .container {
+        transform: translateZ(0);
     }
 }
 
+/* Additional performance for very small screens */
 @media (max-width: 480px) {
-    .scroll-indicator {
-        display: none;
+
+    /* Further reduce animation complexity */
+    * {
+        animation-duration: 0.3s !important;
+        transition-duration: 0.2s !important;
     }
 
-    section {
-        padding: 60px 0;
+    /* Disable all scroll indicator animations */
+    .scroll-indicator {
+        animation: none !important;
+    }
+
+    .mouse::before {
+        animation: none !important;
     }
 }
