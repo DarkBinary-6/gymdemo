@@ -1803,6 +1803,13 @@ footer {
         overflow: visible;
     }
 
+    /* SCROLL FIX: Ensure sections allow vertical scrolling */
+    .testimonials-section,
+    .pricing-section {
+        touch-action: pan-y !important;
+        -webkit-overflow-scrolling: touch;
+    }
+
     /* Optimize cards for smoother scrolling */
     .program-card,
     .trainer-card,
@@ -1828,6 +1835,18 @@ footer {
     .program-card::after {
         pointer-events: none !important;
         display: none;
+    }
+
+    /* SCROLL FIX: Disable touch events on testimonial card pseudo-elements */
+    .testimonial-card::before {
+        pointer-events: none !important;
+    }
+
+    /* SCROLL FIX: Disable touch events on pricing card pseudo-elements */
+    .pricing-card::before,
+    .pricing-card::after,
+    .recommended-badge {
+        pointer-events: none !important;
     }
 
     /* Remove cursor: pointer on mobile - causes touch issues */
