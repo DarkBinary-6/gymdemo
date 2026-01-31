@@ -17,38 +17,12 @@ if (isMobileDevice) {
     document.body.style.position = 'relative';
     document.body.style.height = 'auto';
 
-    // Disable ScrollTrigger completely
+    // Disable ScrollTrigger completely on mobile (prevents scroll blocking)
     if (typeof ScrollTrigger !== 'undefined') {
       setTimeout(() => {
         ScrollTrigger.getAll().forEach(st => st.kill());
         ScrollTrigger.disable();
       }, 100);
-    }
-
-    // CRITICAL: Kill all GSAP animations and force elements visible on mobile
-    if (typeof gsap !== 'undefined') {
-      setTimeout(() => {
-        gsap.killTweensOf('*');
-
-        // Force all elements to be visible
-        const elementsToShow = [
-          '.hero-content', '.hero-line', '.hero-cta-group', '.hero-trust-text',
-          '.program-card', '.trainer-card', '.img-box', '.stat-item',
-          '.contact-info', '.contact-form-wrapper', '.section-title', '.section-label',
-          '.banner-content h2', '.banner-content .main-btn', 'section',
-          '.testimonial-card', '.pricing-card', '.trust-badge', '.benefit-list li',
-          '.location-item', '.main-btn', '.cta-btn', '.about-text', '.about-visuals'
-        ];
-
-        elementsToShow.forEach(selector => {
-          const elements = document.querySelectorAll(selector);
-          elements.forEach(el => {
-            el.style.opacity = '1';
-            el.style.transform = 'none';
-            el.style.visibility = 'visible';
-          });
-        });
-      }, 200);
     }
   });
 }
@@ -197,36 +171,32 @@ if (!isMobileDevice) {
   });
 }
 
-// Hero content fade in with bounce - DESKTOP ONLY
-if (!isMobileDevice) {
-  gsap.fromTo('.hero-content',
-    { opacity: 0, y: 80 },
-    {
-      opacity: 1,
-      y: 0,
-      duration: 0.8,
-      delay: 0.2,
-      ease: 'power4.out'
-    }
-  );
-}
+// Hero content fade in with bounce - WORKS ON ALL DEVICES
+gsap.fromTo('.hero-content',
+  { opacity: 0, y: 80 },
+  {
+    opacity: 1,
+    y: 0,
+    duration: 0.8,
+    delay: 0.2,
+    ease: 'power4.out'
+  }
+);
 
-// Hero title stagger animation with advanced easing - DESKTOP ONLY
-if (!isMobileDevice) {
-  gsap.fromTo('.hero-line',
-    { opacity: 0, y: 120, rotationX: -90 },
-    {
-      opacity: 1,
-      y: 0,
-      rotationX: 0,
-      transformOrigin: 'top center',
-      duration: 0.8,
-      stagger: 0.2,
-      delay: 0.4,
-      ease: 'back.out(1.7)'
-    }
-  );
-}
+// Hero title stagger animation with advanced easing - WORKS ON ALL DEVICES
+gsap.fromTo('.hero-line',
+  { opacity: 0, y: 120, rotationX: -90 },
+  {
+    opacity: 1,
+    y: 0,
+    rotationX: 0,
+    transformOrigin: 'top center',
+    duration: 0.8,
+    stagger: 0.2,
+    delay: 0.4,
+    ease: 'back.out(1.7)'
+  }
+);
 
 // Scroll indicator animation - DISABLED ON MOBILE
 if (!isMobileDevice) {
@@ -575,30 +545,28 @@ gsap.fromTo('.trust-badge',
   }
 );
 
-// ===== HERO CTA GROUP ANIMATION - DESKTOP ONLY =====
-if (!isMobileDevice) {
-  gsap.fromTo('.hero-cta-group',
-    { opacity: 0, y: 40 },
-    {
-      opacity: 1,
-      y: 0,
-      duration: 1,
-      delay: 1.2,
-      ease: 'power3.out'
-    }
-  );
+// ===== HERO CTA GROUP ANIMATION - WORKS ON ALL DEVICES =====
+gsap.fromTo('.hero-cta-group',
+  { opacity: 0, y: 40 },
+  {
+    opacity: 1,
+    y: 0,
+    duration: 1,
+    delay: 1.2,
+    ease: 'power3.out'
+  }
+);
 
-  gsap.fromTo('.hero-trust-text',
-    { opacity: 0, y: 20 },
-    {
-      opacity: 1,
-      y: 0,
-      duration: 0.8,
-      delay: 1.5,
-      ease: 'power2.out'
-    }
-  );
-}
+gsap.fromTo('.hero-trust-text',
+  { opacity: 0, y: 20 },
+  {
+    opacity: 1,
+    y: 0,
+    duration: 0.8,
+    delay: 1.5,
+    ease: 'power2.out'
+  }
+);
 
 // ===== LOCATION ITEMS ANIMATION =====
 gsap.fromTo('.location-item',
