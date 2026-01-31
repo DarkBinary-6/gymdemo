@@ -1823,26 +1823,21 @@ footer {
         overflow: visible;
     }
 
-    /* SCROLL TRAP FIX for Programme cards: card-bg and card-content overlay the card */
+    /* SCROLL FIX: Enable touch events on card elements to allow scrolling */
     .card-bg,
     .card-content,
     .trainer-info {
         touch-action: auto !important;
-        pointer-events: none;
+        pointer-events: auto !important;
     }
 
-    /* CRITICAL: Disable the ::after glow overlay touch events */
+    /* Hide decorative overlays on mobile but allow touch events to pass through */
     .program-card::after {
-        pointer-events: none !important;
         display: none;
     }
 
-    /* SCROLL FIX: Disable touch events on testimonial card pseudo-elements */
-    .testimonial-card::before {
-        pointer-events: none !important;
-    }
-
-    /* SCROLL FIX: Disable touch events on pricing card pseudo-elements */
+    /* Allow touch events on all card elements */
+    .testimonial-card::before,
     .pricing-card::before,
     .pricing-card::after,
     .recommended-badge {
