@@ -38,7 +38,6 @@ body {
     max-width: 100vw;
     /* Mobile scroll performance */
     -webkit-overflow-scrolling: touch;
-    overscroll-behavior: none;
 }
 
 /* Animated gradient background */
@@ -1656,10 +1655,7 @@ footer {
         display: none;
     }
 
-    /* Adjust body padding for mobile CTA */
-    body {
-        padding-bottom: 80px;
-    }
+    /* Adjust body padding for mobile CTA - REMOVED to fix scrolling */
 
     /* Hero adjustments */
     .hero-cta-group {
@@ -1782,8 +1778,10 @@ footer {
     /* Add touch-action for smooth scrolling gestures */
     html,
     body {
-        touch-action: pan-y;
+        touch-action: pan-y pan-x;
         -webkit-tap-highlight-color: transparent;
+        overflow-y: auto !important;
+        overflow-x: hidden;
     }
 
     /* PERFORMANCE: Disable transforms that aren't needed */
