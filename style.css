@@ -1765,15 +1765,7 @@ footer {
         background: rgba(5, 5, 5, 0.98) !important;
     }
 
-    /* PERFORMANCE: Disable all CSS transitions on mobile for 60fps scroll */
-    .program-card,
-    .trainer-card,
-    .pricing-card,
-    .testimonial-card,
-    .img-box,
-    .stat-item {
-        transition: none !important;
-    }
+
 
     /* MOBILE SCROLL FIX: Remove all touch-action restrictions */
     html,
@@ -1858,38 +1850,7 @@ footer {
         pointer-events: auto;
     }
 
-    /* PERFORMANCE: Disable all hover effects on mobile */
-    .program-card:hover,
-    .trainer-card:hover,
-    .pricing-card:hover,
-    .testimonial-card:hover,
-    .main-btn:hover,
-    .cta-btn:hover {
-        transform: none !important;
-        box-shadow: none !important;
-    }
 
-    /* PERFORMANCE: Simplify card backgrounds */
-    .card-bg {
-        transition: none !important;
-    }
-
-    .program-card:hover .card-bg,
-    .trainer-card:hover img {
-        transform: none !important;
-    }
-
-    /* Optimize hero background */
-    .hero-bg {
-        transform: none !important;
-        will-change: auto;
-    }
-
-    /* PERFORMANCE: Disable filter effects */
-    .img-box img,
-    .trainer-card img {
-        filter: none !important;
-    }
 
     /* Prevent mobile elastic/rubber-band scrolling issues */
     .container {
@@ -1900,11 +1861,7 @@ footer {
 /* Additional performance for very small screens */
 @media (max-width: 480px) {
 
-    /* Further reduce animation complexity */
-    * {
-        animation-duration: 0.3s !important;
-        transition-duration: 0.2s !important;
-    }
+
 
     /* Disable all scroll indicator animations */
     .scroll-indicator {
