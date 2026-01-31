@@ -1,8 +1,8 @@
 // ===== CRITICAL MOBILE SCROLL FIX =====
 // Must be at the top before any other code runs
+// More accurate mobile detection - only use screen width and touch capability
 const isMobileDevice = window.matchMedia('(max-width: 768px)').matches ||
-  window.matchMedia('(pointer: coarse)').matches ||
-  'ontouchstart' in window;
+  (window.matchMedia('(max-width: 1024px)').matches && 'ontouchstart' in window);
 
 if (isMobileDevice) {
   // Wait for DOM to be ready
@@ -240,10 +240,8 @@ if (!isMobileDevice) {
 }
 
 // Section animations on scroll with enhanced effects
-// Improved mobile detection - includes tablets and touch devices
-const isMobile = window.matchMedia('(max-width: 768px)').matches ||
-  window.matchMedia('(pointer: coarse)').matches ||
-  'ontouchstart' in window;
+// Use the same mobile detection variable for consistency
+const isMobile = isMobileDevice;
 
 // Mobile-optimized ScrollTrigger settings
 if (isMobile) {
