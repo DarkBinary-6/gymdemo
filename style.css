@@ -1775,13 +1775,15 @@ footer {
         transition: none !important;
     }
 
-    /* Add touch-action for smooth scrolling gestures */
+    /* MOBILE SCROLL FIX: Remove all touch-action restrictions */
     html,
     body {
-        touch-action: pan-y pan-x;
+        touch-action: auto !important;
         -webkit-tap-highlight-color: transparent;
-        overflow-y: auto !important;
-        overflow-x: hidden;
+        overflow-y: scroll !important;
+        overflow-x: hidden !important;
+        height: auto !important;
+        position: relative !important;
     }
 
     /* PERFORMANCE: Disable transforms that aren't needed */
@@ -1796,7 +1798,7 @@ footer {
     .trainers-grid,
     .pricing-grid,
     .testimonials-grid {
-        touch-action: pan-y !important;
+        touch-action: auto !important;
         -webkit-overflow-scrolling: touch;
         overflow: visible;
     }
@@ -1804,7 +1806,7 @@ footer {
     /* SCROLL FIX: Ensure sections allow vertical scrolling */
     .testimonials-section,
     .pricing-section {
-        touch-action: pan-y !important;
+        touch-action: auto !important;
         -webkit-overflow-scrolling: touch;
     }
 
@@ -1817,7 +1819,7 @@ footer {
         -webkit-transform: translateZ(0);
         will-change: auto;
         /* CRITICAL: Allow vertical scrolling on cards */
-        touch-action: pan-y !important;
+        touch-action: auto !important;
         overflow: visible;
     }
 
@@ -1825,7 +1827,7 @@ footer {
     .card-bg,
     .card-content,
     .trainer-info {
-        touch-action: pan-y !important;
+        touch-action: auto !important;
         pointer-events: none;
     }
 

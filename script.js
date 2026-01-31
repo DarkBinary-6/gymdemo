@@ -1,3 +1,32 @@
+// ===== CRITICAL MOBILE SCROLL FIX =====
+// Must be at the top before any other code runs
+const isMobileDevice = window.matchMedia('(max-width: 768px)').matches ||
+  window.matchMedia('(pointer: coarse)').matches ||
+  'ontouchstart' in window;
+
+if (isMobileDevice) {
+  // Wait for DOM to be ready
+  document.addEventListener('DOMContentLoaded', function () {
+    // Ensure body is scrollable
+    document.documentElement.style.overflow = 'auto';
+    document.documentElement.style.overflowY = 'scroll';
+    document.body.style.overflow = 'auto';
+    document.body.style.overflowY = 'scroll';
+    document.body.style.touchAction = 'auto';
+    document.documentElement.style.touchAction = 'auto';
+    document.body.style.position = 'relative';
+    document.body.style.height = 'auto';
+
+    // Disable ScrollTrigger completely
+    if (typeof ScrollTrigger !== 'undefined') {
+      setTimeout(() => {
+        ScrollTrigger.getAll().forEach(st => st.kill());
+        ScrollTrigger.disable();
+      }, 100);
+    }
+  });
+}
+
 // ===== MOBILE MENU TOGGLE =====
 const menuToggle = document.querySelector('.menu-toggle');
 const navLinks = document.querySelector('.nav-links');
@@ -127,18 +156,20 @@ gsap.set('.pricing-card', { opacity: 1, y: 0, scale: 1 });
 gsap.set('.trust-badge', { opacity: 1, y: 0 });
 gsap.set('.benefit-list li', { opacity: 1, x: 0 });
 
-// Hero parallax effect with enhanced movement
-gsap.to('.hero-bg', {
-  scrollTrigger: {
-    trigger: '.hero',
-    start: 'top top',
-    end: 'bottom top',
-    scrub: 1.5
-  },
-  y: 400,
-  scale: 1.3,
-  ease: 'none'
-});
+// Hero parallax effect with enhanced movement - DISABLED ON MOBILE
+if (!isMobileDevice) {
+  gsap.to('.hero-bg', {
+    scrollTrigger: {
+      trigger: '.hero',
+      start: 'top top',
+      end: 'bottom top',
+      scrub: 1.5
+    },
+    y: 400,
+    scale: 1.3,
+    ease: 'none'
+  });
+}
 
 // Hero content fade in with bounce - use fromTo for reliability
 gsap.fromTo('.hero-content',
@@ -167,14 +198,16 @@ gsap.fromTo('.hero-line',
   }
 );
 
-// Scroll indicator animation
-gsap.to('.scroll-indicator', {
-  y: 15,
-  duration: 1.2,
-  repeat: -1,
-  yoyo: true,
-  ease: 'power1.inOut'
-});
+// Scroll indicator animation - DISABLED ON MOBILE
+if (!isMobileDevice) {
+  gsap.to('.scroll-indicator', {
+    y: 15,
+    duration: 1.2,
+    repeat: -1,
+    yoyo: true,
+    ease: 'power1.inOut'
+  });
+}
 
 // Section animations on scroll with enhanced effects
 // Improved mobile detection - includes tablets and touch devices
@@ -398,46 +431,50 @@ gsap.utils.toArray('.section-label').forEach(label => {
   );
 });
 
-// ===== MAGNETIC BUTTON EFFECT =====
-const magneticButtons = document.querySelectorAll('.main-btn, .cta-btn');
+// ===== MAGNETIC BUTTON EFFECT - DISABLED ON MOBILE =====
+if (!isMobileDevice) {
+  const magneticButtons = document.querySelectorAll('.main-btn, .cta-btn');
 
-magneticButtons.forEach(button => {
-  button.addEventListener('mousemove', (e) => {
-    const rect = button.getBoundingClientRect();
-    const x = e.clientX - rect.left - rect.width / 2;
-    const y = e.clientY - rect.top - rect.height / 2;
+  magneticButtons.forEach(button => {
+    button.addEventListener('mousemove', (e) => {
+      const rect = button.getBoundingClientRect();
+      const x = e.clientX - rect.left - rect.width / 2;
+      const y = e.clientY - rect.top - rect.height / 2;
 
-    gsap.to(button, {
-      x: x * 0.3,
-      y: y * 0.3,
-      duration: 0.3,
-      ease: 'power2.out'
+      gsap.to(button, {
+        x: x * 0.3,
+        y: y * 0.3,
+        duration: 0.3,
+        ease: 'power2.out'
+      });
+    });
+
+    button.addEventListener('mouseleave', () => {
+      gsap.to(button, {
+        x: 0,
+        y: 0,
+        duration: 0.5,
+        ease: 'elastic.out(1, 0.3)'
+      });
     });
   });
+}
 
-  button.addEventListener('mouseleave', () => {
-    gsap.to(button, {
-      x: 0,
-      y: 0,
-      duration: 0.5,
-      ease: 'elastic.out(1, 0.3)'
+// ===== CARD MOUSE TRACKING FOR GLOW EFFECT - DISABLED ON MOBILE =====
+if (!isMobileDevice) {
+  const programCards = document.querySelectorAll('.program-card');
+
+  programCards.forEach(card => {
+    card.addEventListener('mousemove', (e) => {
+      const rect = card.getBoundingClientRect();
+      const x = ((e.clientX - rect.left) / rect.width) * 100;
+      const y = ((e.clientY - rect.top) / rect.height) * 100;
+
+      card.style.setProperty('--mouse-x', `${x}%`);
+      card.style.setProperty('--mouse-y', `${y}%`);
     });
   });
-});
-
-// ===== CARD MOUSE TRACKING FOR GLOW EFFECT =====
-const programCards = document.querySelectorAll('.program-card');
-
-programCards.forEach(card => {
-  card.addEventListener('mousemove', (e) => {
-    const rect = card.getBoundingClientRect();
-    const x = ((e.clientX - rect.left) / rect.width) * 100;
-    const y = ((e.clientY - rect.top) / rect.height) * 100;
-
-    card.style.setProperty('--mouse-x', `${x}%`);
-    card.style.setProperty('--mouse-y', `${y}%`);
-  });
-});
+}
 
 // ===== TESTIMONIAL CARDS ANIMATION =====
 gsap.fromTo('.testimonial-card',
