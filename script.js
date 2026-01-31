@@ -5,16 +5,7 @@ const isMobileDevice = window.matchMedia('(max-width: 768px)').matches ||
   (window.matchMedia('(max-width: 1024px)').matches && 'ontouchstart' in window);
 
 if (isMobileDevice) {
-  // CRITICAL: Immediately make all elements visible BEFORE DOMContentLoaded
-  // This prevents any GSAP animations from hiding content
-  const style = document.createElement('style');
-  style.textContent = `
-    * {
-      opacity: 1 !important;
-      visibility: visible !important;
-    }
-  `;
-  document.head.appendChild(style);
+
 
   // Wait for DOM to be ready
   document.addEventListener('DOMContentLoaded', function () {
