@@ -24,6 +24,32 @@ if (isMobileDevice) {
         ScrollTrigger.disable();
       }, 100);
     }
+
+    // CRITICAL: Kill all GSAP animations and force elements visible on mobile
+    if (typeof gsap !== 'undefined') {
+      setTimeout(() => {
+        gsap.killTweensOf('*');
+
+        // Force all elements to be visible
+        const elementsToShow = [
+          '.hero-content', '.hero-line', '.hero-cta-group', '.hero-trust-text',
+          '.program-card', '.trainer-card', '.img-box', '.stat-item',
+          '.contact-info', '.contact-form-wrapper', '.section-title', '.section-label',
+          '.banner-content h2', '.banner-content .main-btn', 'section',
+          '.testimonial-card', '.pricing-card', '.trust-badge', '.benefit-list li',
+          '.location-item', '.main-btn', '.cta-btn', '.about-text', '.about-visuals'
+        ];
+
+        elementsToShow.forEach(selector => {
+          const elements = document.querySelectorAll(selector);
+          elements.forEach(el => {
+            el.style.opacity = '1';
+            el.style.transform = 'none';
+            el.style.visibility = 'visible';
+          });
+        });
+      }, 200);
+    }
   });
 }
 
