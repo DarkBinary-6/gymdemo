@@ -197,32 +197,36 @@ if (!isMobileDevice) {
   });
 }
 
-// Hero content fade in with bounce - use fromTo for reliability
-gsap.fromTo('.hero-content',
-  { opacity: 0, y: 80 },
-  {
-    opacity: 1,
-    y: 0,
-    duration: 0.8,
-    delay: 0.2,
-    ease: 'power4.out'
-  }
-);
+// Hero content fade in with bounce - DESKTOP ONLY
+if (!isMobileDevice) {
+  gsap.fromTo('.hero-content',
+    { opacity: 0, y: 80 },
+    {
+      opacity: 1,
+      y: 0,
+      duration: 0.8,
+      delay: 0.2,
+      ease: 'power4.out'
+    }
+  );
+}
 
-// Hero title stagger animation with advanced easing
-gsap.fromTo('.hero-line',
-  { opacity: 0, y: 120, rotationX: -90 },
-  {
-    opacity: 1,
-    y: 0,
-    rotationX: 0,
-    transformOrigin: 'top center',
-    duration: 0.8,
-    stagger: 0.2,
-    delay: 0.4,
-    ease: 'back.out(1.7)'
-  }
-);
+// Hero title stagger animation with advanced easing - DESKTOP ONLY
+if (!isMobileDevice) {
+  gsap.fromTo('.hero-line',
+    { opacity: 0, y: 120, rotationX: -90 },
+    {
+      opacity: 1,
+      y: 0,
+      rotationX: 0,
+      transformOrigin: 'top center',
+      duration: 0.8,
+      stagger: 0.2,
+      delay: 0.4,
+      ease: 'back.out(1.7)'
+    }
+  );
+}
 
 // Scroll indicator animation - DISABLED ON MOBILE
 if (!isMobileDevice) {
@@ -573,28 +577,30 @@ gsap.fromTo('.trust-badge',
   }
 );
 
-// ===== HERO CTA GROUP ANIMATION =====
-gsap.fromTo('.hero-cta-group',
-  { opacity: 0, y: 40 },
-  {
-    opacity: 1,
-    y: 0,
-    duration: 1,
-    delay: 1.2,
-    ease: 'power3.out'
-  }
-);
+// ===== HERO CTA GROUP ANIMATION - DESKTOP ONLY =====
+if (!isMobileDevice) {
+  gsap.fromTo('.hero-cta-group',
+    { opacity: 0, y: 40 },
+    {
+      opacity: 1,
+      y: 0,
+      duration: 1,
+      delay: 1.2,
+      ease: 'power3.out'
+    }
+  );
 
-gsap.fromTo('.hero-trust-text',
-  { opacity: 0, y: 20 },
-  {
-    opacity: 1,
-    y: 0,
-    duration: 0.8,
-    delay: 1.5,
-    ease: 'power2.out'
-  }
-);
+  gsap.fromTo('.hero-trust-text',
+    { opacity: 0, y: 20 },
+    {
+      opacity: 1,
+      y: 0,
+      duration: 0.8,
+      delay: 1.5,
+      ease: 'power2.out'
+    }
+  );
+}
 
 // ===== LOCATION ITEMS ANIMATION =====
 gsap.fromTo('.location-item',
