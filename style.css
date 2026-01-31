@@ -1770,22 +1770,16 @@ footer {
 
 
     /* MOBILE SCROLL FIX: Remove all touch-action restrictions */
+    /* MOBILE SCROLL FIX: Remove all touch-action restrictions */
     html,
     body {
         touch-action: auto !important;
         -webkit-tap-highlight-color: transparent;
         overflow-y: scroll !important;
         overflow-x: hidden !important;
-        height: auto !important;
-        position: relative !important;
     }
 
-    /* PERFORMANCE: Disable transforms that aren't needed */
-    section {
-        transform: none !important;
-        backface-visibility: hidden;
-        -webkit-backface-visibility: hidden;
-    }
+
 
     /* SCROLL TRAP FIX: Allow vertical page scroll on grid containers */
     .programs-grid,
