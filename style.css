@@ -40,6 +40,32 @@ body {
     -webkit-overflow-scrolling: touch;
 }
 
+/* CRITICAL: Ensure all elements are visible by default */
+/* This prevents GSAP animations from leaving content invisible */
+.hero-content,
+.hero-line,
+.hero-cta-group,
+.hero-trust-text,
+.program-card,
+.trainer-card,
+.img-box,
+.stat-item,
+.contact-info,
+.contact-form-wrapper,
+.section-title,
+.section-label,
+.testimonial-card,
+.pricing-card,
+.trust-badge,
+.benefit-list li,
+.location-item,
+.main-btn,
+.cta-btn,
+section {
+    opacity: 1;
+    visibility: visible;
+}
+
 /* Animated gradient background */
 body::before {
     content: '';

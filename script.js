@@ -5,6 +5,17 @@ const isMobileDevice = window.matchMedia('(max-width: 768px)').matches ||
   (window.matchMedia('(max-width: 1024px)').matches && 'ontouchstart' in window);
 
 if (isMobileDevice) {
+  // CRITICAL: Immediately make all elements visible BEFORE DOMContentLoaded
+  // This prevents any GSAP animations from hiding content
+  const style = document.createElement('style');
+  style.textContent = `
+    * {
+      opacity: 1 !important;
+      visibility: visible !important;
+    }
+  `;
+  document.head.appendChild(style);
+
   // Wait for DOM to be ready
   document.addEventListener('DOMContentLoaded', function () {
     // Ensure body is scrollable
@@ -172,31 +183,25 @@ if (!isMobileDevice) {
 }
 
 // Hero content fade in with bounce - WORKS ON ALL DEVICES
-gsap.fromTo('.hero-content',
-  { opacity: 0, y: 80 },
-  {
-    opacity: 1,
-    y: 0,
-    duration: 0.8,
-    delay: 0.2,
-    ease: 'power4.out'
-  }
-);
+gsap.from('.hero-content', {
+  opacity: 0,
+  y: 80,
+  duration: 0.8,
+  delay: 0.2,
+  ease: 'power4.out'
+});
 
 // Hero title stagger animation with advanced easing - WORKS ON ALL DEVICES
-gsap.fromTo('.hero-line',
-  { opacity: 0, y: 120, rotationX: -90 },
-  {
-    opacity: 1,
-    y: 0,
-    rotationX: 0,
-    transformOrigin: 'top center',
-    duration: 0.8,
-    stagger: 0.2,
-    delay: 0.4,
-    ease: 'back.out(1.7)'
-  }
-);
+gsap.from('.hero-line', {
+  opacity: 0,
+  y: 120,
+  rotationX: -90,
+  transformOrigin: 'top center',
+  duration: 0.8,
+  stagger: 0.2,
+  delay: 0.4,
+  ease: 'back.out(1.7)'
+});
 
 // Scroll indicator animation - DISABLED ON MOBILE
 if (!isMobileDevice) {
@@ -216,200 +221,170 @@ const isMobile = isMobileDevice;
 // Section animations on scroll - WORKS ON ALL DEVICES
 const sections = gsap.utils.toArray('section');
 sections.forEach((section, index) => {
-  gsap.fromTo(section,
-    { opacity: 0, y: 100, scale: 1 },
-    {
-      scrollTrigger: {
-        trigger: section,
-        start: 'top 90%',
-        end: 'top 50%',
-        toggleActions: 'play none none none',
-        scrub: false
-      },
-      opacity: 1,
-      y: 0,
-      scale: 1,
-      duration: 0.8,
-      ease: 'power3.out'
-    }
-  );
+  gsap.from(section, {
+    opacity: 0,
+    y: 100,
+    scale: 1, // Note: scale: 1 is end state. from should be different or omitted if default.
+    // Original code: from {scale: 1} to {scale: 1}. It does nothing for scale.
+    // I will keep it consistent or remove it. Let's assume from scale 1 is intended (but redundant).
+    // Actually, if I remove it, it defaults to 1.
+    scrollTrigger: {
+      trigger: section,
+      start: 'top 90%',
+      end: 'top 50%',
+      toggleActions: 'play none none none',
+      scrub: false
+    },
+    duration: 0.8,
+    ease: 'power3.out'
+  });
 });
 
 // About images animation with 3D rotation
-gsap.fromTo('.img-box',
-  { opacity: 0, scale: 0.7, rotationY: -45 },
-  {
-    scrollTrigger: {
-      trigger: '.about-visuals',
-      start: 'top 80%',
-      toggleActions: 'play none none reverse'
-    },
-    opacity: 1,
-    scale: 1,
-    rotationY: 0,
-    duration: 1.2,
-    stagger: 0.3,
-    ease: 'back.out(2)'
-  }
-);
+gsap.from('.img-box', {
+  opacity: 0,
+  scale: 0.7,
+  rotationY: -45,
+  scrollTrigger: {
+    trigger: '.about-visuals',
+    start: 'top 80%',
+    toggleActions: 'play none none reverse'
+  },
+  duration: 1.2,
+  stagger: 0.3,
+  ease: 'back.out(2)'
+});
 
 // Stats animation with bounce
-gsap.fromTo('.stat-item',
-  { opacity: 0, y: 50, scale: 0.5 },
-  {
-    scrollTrigger: {
-      trigger: '.stats-grid',
-      start: 'top 80%'
-    },
-    opacity: 1,
-    y: 0,
-    scale: 1,
-    duration: 0.8,
-    stagger: 0.2,
-    ease: 'elastic.out(1, 0.5)'
-  }
-);
+gsap.from('.stat-item', {
+  opacity: 0,
+  y: 50,
+  scale: 0.5,
+  scrollTrigger: {
+    trigger: '.stats-grid',
+    start: 'top 80%'
+  },
+  duration: 0.8,
+  stagger: 0.2,
+  ease: 'elastic.out(1, 0.5)'
+});
 
 // Program cards stagger with 3D effect - WORKS ON ALL DEVICES
-gsap.fromTo('.program-card',
-  { opacity: 0, y: 150, rotationX: 45 },
-  {
-    scrollTrigger: {
-      trigger: '.programs-grid',
-      start: 'top 85%',
-      toggleActions: 'play none none reverse'
-    },
-    opacity: 1,
-    y: 0,
-    rotationX: 0,
-    duration: 0.7,
-    stagger: 0.15,
-    ease: 'power3.out'
-  }
-);
+gsap.from('.program-card', {
+  opacity: 0,
+  y: 150,
+  rotationX: 45,
+  scrollTrigger: {
+    trigger: '.programs-grid',
+    start: 'top 85%',
+    toggleActions: 'play none none reverse'
+  },
+  duration: 0.7,
+  stagger: 0.15,
+  ease: 'power3.out'
+});
 
 // Trainer cards animation - WORKS ON ALL DEVICES
 const trainerCards = gsap.utils.toArray('.trainer-card');
 trainerCards.forEach((card, index) => {
   const xFrom = index % 2 === 0 ? -100 : 100;
-  gsap.fromTo(card,
-    { opacity: 0, x: xFrom, scale: 0.8 },
-    {
-      scrollTrigger: {
-        trigger: '.trainers-grid',
-        start: 'top 80%',
-        toggleActions: 'play none none reverse'
-      },
-      opacity: 1,
-      x: 0,
-      scale: 1,
-      duration: 0.7,
-      delay: index * 0.15,
-      ease: 'power3.out'
-    }
-  );
+  gsap.from(card, {
+    opacity: 0,
+    x: xFrom,
+    scale: 0.8,
+    scrollTrigger: {
+      trigger: '.trainers-grid',
+      start: 'top 80%',
+      toggleActions: 'play none none reverse'
+    },
+    duration: 0.7,
+    delay: index * 0.15,
+    ease: 'power3.out'
+  });
 });
 
 // Banner text animation with elastic bounce
-gsap.fromTo('.banner-content h2',
-  { opacity: 0, scale: 0.5, rotation: -10 },
-  {
-    scrollTrigger: {
-      trigger: '.banner-section',
-      start: 'top 70%',
-      toggleActions: 'play none none reverse'
-    },
-    opacity: 1,
-    scale: 1,
-    rotation: 0,
-    duration: 1.2,
-    ease: 'elastic.out(1, 0.6)'
-  }
-);
+gsap.from('.banner-content h2', {
+  opacity: 0,
+  scale: 0.5,
+  rotation: -10,
+  scrollTrigger: {
+    trigger: '.banner-section',
+    start: 'top 70%',
+    toggleActions: 'play none none reverse'
+  },
+  duration: 1.2,
+  ease: 'elastic.out(1, 0.6)'
+});
 
 // Banner button animation
-gsap.fromTo('.banner-content .main-btn',
-  { opacity: 0, y: 50 },
-  {
-    scrollTrigger: {
-      trigger: '.banner-section',
-      start: 'top 70%'
-    },
-    opacity: 1,
-    y: 0,
-    duration: 1,
-    delay: 0.3,
-    ease: 'back.out(1.7)'
-  }
-);
+gsap.from('.banner-content .main-btn', {
+  opacity: 0,
+  y: 50,
+  scrollTrigger: {
+    trigger: '.banner-section',
+    start: 'top 70%'
+  },
+  duration: 1,
+  delay: 0.3,
+  ease: 'back.out(1.7)'
+});
 
 // Contact section split animation with enhanced movement
-gsap.fromTo('.contact-info',
-  { opacity: 0, x: -100, rotationY: -20 },
-  {
-    scrollTrigger: {
-      trigger: '.contact-section',
-      start: 'top 70%',
-      toggleActions: 'play none none reverse'
-    },
-    opacity: 1,
-    x: 0,
-    rotationY: 0,
-    duration: 1.2,
-    ease: 'power3.out'
-  }
-);
+gsap.from('.contact-info', {
+  opacity: 0,
+  x: -100,
+  rotationY: -20,
+  scrollTrigger: {
+    trigger: '.contact-section',
+    start: 'top 70%',
+    toggleActions: 'play none none reverse'
+  },
+  duration: 1.2,
+  ease: 'power3.out'
+});
 
-gsap.fromTo('.contact-form-wrapper',
-  { opacity: 0, x: 100, rotationY: 20 },
-  {
-    scrollTrigger: {
-      trigger: '.contact-section',
-      start: 'top 70%',
-      toggleActions: 'play none none reverse'
-    },
-    opacity: 1,
-    x: 0,
-    rotationY: 0,
-    duration: 1.2,
-    ease: 'power3.out'
-  }
-);
+gsap.from('.contact-form-wrapper', {
+  opacity: 0,
+  x: 100,
+  rotationY: 20,
+  scrollTrigger: {
+    trigger: '.contact-section',
+    start: 'top 70%',
+    toggleActions: 'play none none reverse'
+  },
+  duration: 1.2,
+  ease: 'power3.out'
+});
 
 // Section titles animation with split effect
 gsap.utils.toArray('.section-title').forEach(title => {
-  gsap.fromTo(title,
-    { opacity: 0, y: 50, scale: 0.9 },
-    {
-      scrollTrigger: {
-        trigger: title,
-        start: 'top 90%',
-        toggleActions: 'play none none reverse'
-      },
-      opacity: 1,
-      y: 0,
-      scale: 1,
-      duration: 1,
-      ease: 'back.out(1.7)'
-    }
-  );
+  gsap.from(title, {
+    opacity: 0,
+    y: 50,
+    scale: 0.9,
+    scrollTrigger: {
+      trigger: title,
+      start: 'top 90%',
+      toggleActions: 'play none none reverse'
+    },
+    duration: 1,
+    ease: 'back.out(1.7)'
+  });
 });
 
 // Section labels animation
 gsap.utils.toArray('.section-label').forEach(label => {
-  gsap.fromTo(label,
-    { opacity: 0, x: -30 },
-    {
-      scrollTrigger: {
-        trigger: label,
-        start: 'top 90%'
-      },
-      opacity: 1,
-      x: 0,
-      duration: 0.8,
-      ease: 'power2.out'
-    }
-  );
+  gsap.from(label, {
+    opacity: 0,
+    x: -30,
+    scrollTrigger: {
+      trigger: label,
+      start: 'top 90%'
+    },
+    duration: 0.8,
+    ease: 'power2.out'
+  });
 });
 
 // ===== MAGNETIC BUTTON EFFECT - DISABLED ON MOBILE =====
@@ -458,111 +433,88 @@ if (!isMobileDevice) {
 }
 
 // ===== TESTIMONIAL CARDS ANIMATION =====
-gsap.fromTo('.testimonial-card',
-  { opacity: 0, y: 80, scale: 0.9 },
-  {
-    scrollTrigger: {
-      trigger: '.testimonials-grid',
-      start: 'top 80%',
-      toggleActions: 'play none none reverse'
-    },
-    opacity: 1,
-    y: 0,
-    scale: 1,
-    duration: 0.8,
-    stagger: 0.2,
-    ease: 'power3.out'
-  }
-);
+gsap.from('.testimonial-card', {
+  opacity: 0,
+  y: 80,
+  scale: 0.9,
+  scrollTrigger: {
+    trigger: '.testimonials-grid',
+    start: 'top 80%',
+    toggleActions: 'play none none reverse'
+  },
+  duration: 0.8,
+  stagger: 0.2,
+  ease: 'power3.out'
+});
 
-// ===== PRICING CARDS ANIMATION - DISABLED ON MOBILE =====
-if (!isMobile) {
-  gsap.fromTo('.pricing-card',
-    { opacity: 0, y: 100, rotationX: 15 },
-    {
-      scrollTrigger: {
-        trigger: '.pricing-grid',
-        start: 'top 85%',
-        toggleActions: 'play none none reverse'
-      },
-      opacity: 1,
-      y: 0,
-      rotationX: 0,
-      duration: 0.5,
-      stagger: 0.1,
-      ease: 'power2.out'
-    }
-  );
-}
+// ===== PRICING CARDS ANIMATION - WORKS ON ALL DEVICES =====
+gsap.from('.pricing-card', {
+  opacity: 0,
+  y: 100,
+  rotationX: 15,
+  scrollTrigger: {
+    trigger: '.pricing-grid',
+    start: 'top 85%',
+    toggleActions: 'play none none reverse'
+  },
+  duration: 0.5,
+  stagger: 0.1,
+  ease: 'power2.out'
+});
 
 // ===== BENEFIT LIST ANIMATION =====
-gsap.fromTo('.benefit-list li',
-  { opacity: 0, x: -30 },
-  {
-    scrollTrigger: {
-      trigger: '.benefit-list',
-      start: 'top 85%'
-    },
-    opacity: 1,
-    x: 0,
-    duration: 0.5,
-    stagger: 0.1,
-    ease: 'power2.out'
-  }
-);
+gsap.from('.benefit-list li', {
+  opacity: 0,
+  x: -30,
+  scrollTrigger: {
+    trigger: '.benefit-list',
+    start: 'top 85%'
+  },
+  duration: 0.5,
+  stagger: 0.1,
+  ease: 'power2.out'
+});
 
 // ===== TRUST BADGES ANIMATION =====
-gsap.fromTo('.trust-badge',
-  { opacity: 0, y: 30, scale: 0.9 },
-  {
-    scrollTrigger: {
-      trigger: '.trust-badges',
-      start: 'top 85%'
-    },
-    opacity: 1,
-    y: 0,
-    scale: 1,
-    duration: 0.6,
-    stagger: 0.15,
-    ease: 'back.out(1.5)'
-  }
-);
+gsap.from('.trust-badge', {
+  opacity: 0,
+  y: 30,
+  scale: 0.9,
+  scrollTrigger: {
+    trigger: '.trust-badges',
+    start: 'top 85%'
+  },
+  duration: 0.6,
+  stagger: 0.15,
+  ease: 'back.out(1.5)'
+});
 
 // ===== HERO CTA GROUP ANIMATION - WORKS ON ALL DEVICES =====
-gsap.fromTo('.hero-cta-group',
-  { opacity: 0, y: 40 },
-  {
-    opacity: 1,
-    y: 0,
-    duration: 1,
-    delay: 1.2,
-    ease: 'power3.out'
-  }
-);
+gsap.from('.hero-cta-group', {
+  opacity: 0,
+  y: 40,
+  duration: 1,
+  delay: 1.2,
+  ease: 'power3.out'
+});
 
-gsap.fromTo('.hero-trust-text',
-  { opacity: 0, y: 20 },
-  {
-    opacity: 1,
-    y: 0,
-    duration: 0.8,
-    delay: 1.5,
-    ease: 'power2.out'
-  }
-);
+gsap.from('.hero-trust-text', {
+  opacity: 0,
+  y: 20,
+  duration: 0.8,
+  delay: 1.5,
+  ease: 'power2.out'
+});
 
 // ===== LOCATION ITEMS ANIMATION =====
-gsap.fromTo('.location-item',
-  { opacity: 0, x: -40 },
-  {
-    scrollTrigger: {
-      trigger: '.location-details',
-      start: 'top 80%'
-    },
-    opacity: 1,
-    x: 0,
-    duration: 0.6,
-    stagger: 0.15,
-    ease: 'power2.out'
-  }
-);
+gsap.from('.location-item', {
+  opacity: 0,
+  x: -40,
+  scrollTrigger: {
+    trigger: '.location-details',
+    start: 'top 80%'
+  },
+  duration: 0.6,
+  stagger: 0.15,
+  ease: 'power2.out'
+});
