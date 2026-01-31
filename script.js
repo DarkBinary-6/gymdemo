@@ -213,40 +213,27 @@ if (!isMobileDevice) {
 // Use the same mobile detection variable for consistency
 const isMobile = isMobileDevice;
 
-// Mobile-optimized ScrollTrigger settings
-if (isMobile) {
-  ScrollTrigger.config({
-    limitCallbacks: true,
-    ignoreMobileResize: true
-  });
-
-  // PERFORMANCE: Kill all ScrollTrigger instances on mobile for smooth scrolling
-  ScrollTrigger.getAll().forEach(st => st.kill());
-}
-
-// Section animations on scroll - DISABLED ON MOBILE for performance
-if (!isMobile) {
-  const sections = gsap.utils.toArray('section');
-  sections.forEach((section, index) => {
-    gsap.fromTo(section,
-      { opacity: 0, y: 100, scale: 1 },
-      {
-        scrollTrigger: {
-          trigger: section,
-          start: 'top 90%',
-          end: 'top 50%',
-          toggleActions: 'play none none none',
-          scrub: false
-        },
-        opacity: 1,
-        y: 0,
-        scale: 1,
-        duration: 0.8,
-        ease: 'power3.out'
-      }
-    );
-  });
-}
+// Section animations on scroll - WORKS ON ALL DEVICES
+const sections = gsap.utils.toArray('section');
+sections.forEach((section, index) => {
+  gsap.fromTo(section,
+    { opacity: 0, y: 100, scale: 1 },
+    {
+      scrollTrigger: {
+        trigger: section,
+        start: 'top 90%',
+        end: 'top 50%',
+        toggleActions: 'play none none none',
+        scrub: false
+      },
+      opacity: 1,
+      y: 0,
+      scale: 1,
+      duration: 0.8,
+      ease: 'power3.out'
+    }
+  );
+});
 
 // About images animation with 3D rotation
 gsap.fromTo('.img-box',
@@ -283,49 +270,45 @@ gsap.fromTo('.stat-item',
   }
 );
 
-// Program cards stagger with 3D effect - DISABLED ON MOBILE
-if (!isMobile) {
-  gsap.fromTo('.program-card',
-    { opacity: 0, y: 150, rotationX: 45 },
+// Program cards stagger with 3D effect - WORKS ON ALL DEVICES
+gsap.fromTo('.program-card',
+  { opacity: 0, y: 150, rotationX: 45 },
+  {
+    scrollTrigger: {
+      trigger: '.programs-grid',
+      start: 'top 85%',
+      toggleActions: 'play none none reverse'
+    },
+    opacity: 1,
+    y: 0,
+    rotationX: 0,
+    duration: 0.7,
+    stagger: 0.15,
+    ease: 'power3.out'
+  }
+);
+
+// Trainer cards animation - WORKS ON ALL DEVICES
+const trainerCards = gsap.utils.toArray('.trainer-card');
+trainerCards.forEach((card, index) => {
+  const xFrom = index % 2 === 0 ? -100 : 100;
+  gsap.fromTo(card,
+    { opacity: 0, x: xFrom, scale: 0.8 },
     {
       scrollTrigger: {
-        trigger: '.programs-grid',
-        start: 'top 85%',
+        trigger: '.trainers-grid',
+        start: 'top 80%',
         toggleActions: 'play none none reverse'
       },
       opacity: 1,
-      y: 0,
-      rotationX: 0,
+      x: 0,
+      scale: 1,
       duration: 0.7,
-      stagger: 0.15,
+      delay: index * 0.15,
       ease: 'power3.out'
     }
   );
-}
-
-// Trainer cards animation - DISABLED ON MOBILE
-if (!isMobile) {
-  const trainerCards = gsap.utils.toArray('.trainer-card');
-  trainerCards.forEach((card, index) => {
-    const xFrom = index % 2 === 0 ? -100 : 100;
-    gsap.fromTo(card,
-      { opacity: 0, x: xFrom, scale: 0.8 },
-      {
-        scrollTrigger: {
-          trigger: '.trainers-grid',
-          start: 'top 80%',
-          toggleActions: 'play none none reverse'
-        },
-        opacity: 1,
-        x: 0,
-        scale: 1,
-        duration: 0.7,
-        delay: index * 0.15,
-        ease: 'power3.out'
-      }
-    );
-  });
-}
+});
 
 // Banner text animation with elastic bounce
 gsap.fromTo('.banner-content h2',
