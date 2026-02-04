@@ -28,39 +28,68 @@ const programs = [
   }
 ];
 
+const container = {
+  hidden: { opacity: 0 },
+  show: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.2
+    }
+  }
+};
+
+const item = {
+  hidden: { opacity: 0, y: 50 },
+  show: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      type: "spring",
+      stiffness: 50,
+      damping: 15
+    }
+  }
+};
+
 const Programs = () => {
   return (
     <section id="programs" className="py-20 bg-gym-black">
       <div className="container mx-auto px-4">
-        
+
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          viewport={{ once: false }}
           transition={{ duration: 0.8 }}
           className="text-center mb-16"
         >
-          <span className="text-gym-red font-roboto uppercase tracking-widest font-bold">Our Programs</span>
-          <h2 className="text-4xl md:text-5xl font-anton text-white mt-2 uppercase">
+          <span className="text-gym-red font-roboto uppercase tracking-widest font-medium">Our Programs</span>
+          <h2 className="text-4xl md:text-5xl font-roboto text-white mt-2 uppercase">
             Choose Your <span className="text-stroke">Path</span>
           </h2>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {programs.map((program, index) => (
+        <motion.div
+          variants={container}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: false, margin: "-100px" }}
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8"
+        >
+          {programs.map((program) => (
             <motion.div
               key={program.id}
-              initial={{ opacity: 0, y: 50, rotateX: -15 }}
-              whileInView={{ opacity: 1, y: 0, rotateX: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: index * 0.1 }}
-              whileHover={{ y: -10, transition: { duration: 0.3 } }}
+              variants={item}
+              whileHover={{
+                y: -10,
+                transition: { type: "spring", stiffness: 300 }
+              }}
               className="bg-gym-gray p-8 rounded border border-gray-800 hover:border-gym-red group transition-colors duration-300"
             >
               <div className="text-4xl text-gym-red mb-6 transform group-hover:scale-110 transition-transform duration-300">
                 {program.icon}
               </div>
-              <h3 className="text-2xl font-anton text-white mb-4 uppercase tracking-wide">
+              <h3 className="text-2xl font-roboto text-white mb-4 uppercase tracking-wide">
                 {program.title}
               </h3>
               <p className="text-gray-400 font-roboto leading-relaxed">
@@ -68,7 +97,7 @@ const Programs = () => {
               </p>
             </motion.div>
           ))}
-        </div>
+        </motion.div>
 
       </div>
     </section>

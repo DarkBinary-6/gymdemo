@@ -1,5 +1,5 @@
 import { motion, useInView } from 'framer-motion';
-import { useRef, useEffect, useState } from 'react';
+import { useRef, useEffect } from 'react';
 
 const stats = [
     { id: 1, label: 'Active Members', value: 1500, suffix: '+' },
@@ -49,7 +49,7 @@ const Counter = ({ from, to }: { from: number; to: number }) => {
         return () => { controls.stop = true; };
     }, [isInView, from, to]);
 
-    return <span ref={nodeRef} className="text-5xl md:text-7xl font-anton text-white">{from}</span>;
+    return <span ref={nodeRef} className="text-5xl md:text-7xl font-roboto text-white">{from}</span>;
 };
 
 const Stats = () => {
@@ -68,7 +68,7 @@ const Stats = () => {
                         >
                             <div className="flex items-center justify-center gap-1 mb-2">
                                 <Counter from={0} to={stat.value} />
-                                <span className="text-3xl md:text-5xl font-anton text-gym-red">{stat.suffix}</span>
+                                <span className="text-3xl md:text-5xl font-roboto text-gym-red">{stat.suffix}</span>
                             </div>
                             <p className="text-gray-400 font-roboto uppercase tracking-widest text-sm md:text-base">
                                 {stat.label}

@@ -28,7 +28,7 @@ const Navbar = () => {
             <div className="container mx-auto px-4 flex justify-between items-center">
                 {/* Logo */}
                 <div className="flex items-center gap-2">
-                    <span className="text-gym-red text-3xl font-anton tracking-wider">IRONFORGE</span>
+                    <span className="text-gym-red text-3xl font-roboto tracking-wider">IRONFORGE</span>
                 </div>
 
                 {/* Desktop Menu */}
@@ -39,7 +39,7 @@ const Navbar = () => {
                             to={link.to}
                             smooth={true}
                             duration={500}
-                            className="text-white font-roboto text-lg uppercase tracking-wide hover:text-gym-red transition-colors cursor-pointer"
+                            className="text-white font-roboto text-lg uppercase tracking-wide font-medium hover:text-gym-red transition-colors cursor-pointer"
                         >
                             {link.name}
                         </Link>
@@ -48,7 +48,7 @@ const Navbar = () => {
                         to="contact"
                         smooth={true}
                         duration={500}
-                        className="bg-gym-red text-white px-6 py-2 font-anton uppercase tracking-wider hover:bg-red-600 transition-colors cursor-pointer clip-path-slant"
+                        className="bg-gym-red text-white px-6 py-2 font-roboto uppercase tracking-wider hover:bg-red-600 transition-colors cursor-pointer clip-path-slant"
                     >
                         Join Now
                     </Link>
@@ -79,7 +79,7 @@ const Navbar = () => {
                                     smooth={true}
                                     duration={500}
                                     onClick={() => setIsOpen(false)}
-                                    className="text-white font-anton text-3xl uppercase tracking-wider hover:text-gym-red transition-colors cursor-pointer"
+                                    className="text-white font-roboto text-3xl uppercase tracking-wider hover:text-gym-red transition-colors cursor-pointer"
                                 >
                                     {link.name}
                                 </Link>
@@ -89,7 +89,7 @@ const Navbar = () => {
                                 smooth={true}
                                 duration={500}
                                 onClick={() => setIsOpen(false)}
-                                className="bg-gym-red text-white px-8 py-3 font-anton text-xl uppercase tracking-wider clip-path-slant mt-4"
+                                className="bg-gym-red text-white px-8 py-3 font-roboto text-xl uppercase tracking-wider clip-path-slant mt-4"
                             >
                                 Join Now
                             </Link>

@@ -1,8 +1,18 @@
-import { motion } from 'framer-motion';
+import { motion, useScroll, useTransform } from 'framer-motion';
+import { useRef } from 'react';
 
 const About = () => {
+    const containerRef = useRef(null);
+    const { scrollYProgress } = useScroll({
+        target: containerRef,
+        offset: ["start end", "end start"]
+    });
+
+    const y1 = useTransform(scrollYProgress, [0, 1], [100, -100]);
+    const y2 = useTransform(scrollYProgress, [0, 1], [-50, 50]);
+
     return (
-        <section className="py-20 bg-gym-dark overflow-hidden">
+        <section ref={containerRef} className="py-20 bg-gym-dark overflow-hidden">
             <div className="container mx-auto px-4">
                 <div className="flex flex-col lg:flex-row items-center gap-16">
 
@@ -10,40 +20,34 @@ const About = () => {
                     <div className="w-full lg:w-1/2">
                         <div className="grid grid-cols-2 gap-4 relative">
                             <motion.div
-                                initial={{ opacity: 0, x: -50 }}
-                                whileInView={{ opacity: 1, x: 0 }}
-                                viewport={{ once: true }}
-                                transition={{ duration: 0.8 }}
+                                style={{ y: y1 }}
                                 className="space-y-4 mt-8"
                             >
                                 <img
-                                    src="/about-1.jpg"
+                                    src="/about-1.png"
                                     alt="Gym Interior"
-                                    className="w-full h-64 object-cover rounded-sm grayscale hover:grayscale-0 transition-all duration-500"
+                                    className="w-full h-64 object-cover rounded-sm grayscale hover:grayscale-0 transition-all duration-500 hover:scale-[1.02]"
                                 />
                                 <img
-                                    src="/about-2.jpg"
+                                    src="/about-2.png"
                                     alt="Training"
-                                    className="w-full h-48 object-cover rounded-sm grayscale hover:grayscale-0 transition-all duration-500"
+                                    className="w-full h-48 object-cover rounded-sm grayscale hover:grayscale-0 transition-all duration-500 hover:scale-[1.02]"
                                 />
                             </motion.div>
 
                             <motion.div
-                                initial={{ opacity: 0, x: 50 }}
-                                whileInView={{ opacity: 1, x: 0 }}
-                                viewport={{ once: true }}
-                                transition={{ duration: 0.8, delay: 0.2 }}
+                                style={{ y: y2 }}
                                 className="space-y-4"
                             >
                                 <img
-                                    src="/about-3.jpg"
+                                    src="/about-3.png"
                                     alt="Weights"
-                                    className="w-full h-48 object-cover rounded-sm grayscale hover:grayscale-0 transition-all duration-500"
+                                    className="w-full h-48 object-cover rounded-sm grayscale hover:grayscale-0 transition-all duration-500 hover:scale-[1.02]"
                                 />
                                 <img
-                                    src="/about-4.jpg"
+                                    src="/about-4.png"
                                     alt="Cardio"
-                                    className="w-full h-64 object-cover rounded-sm grayscale hover:grayscale-0 transition-all duration-500"
+                                    className="w-full h-64 object-cover rounded-sm grayscale hover:grayscale-0 transition-all duration-500 hover:scale-[1.02]"
                                 />
                             </motion.div>
 
@@ -55,17 +59,23 @@ const About = () => {
                     {/* Text Content */}
                     <div className="w-full lg:w-1/2">
                         <motion.div
-                            initial={{ opacity: 0, y: 30 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
+                            initial={{ opacity: 0, x: 50 }}
+                            whileInView={{ opacity: 1, x: 0 }}
+                            viewport={{ once: false, margin: "-100px" }}
                             transition={{ duration: 0.8 }}
                         >
                             <div className="flex items-center gap-4 mb-6">
-                                <div className="w-12 h-1 bg-gym-red"></div>
-                                <span className="text-gym-red font-roboto uppercase tracking-widest font-bold">About Us</span>
+                                <motion.div
+                                    initial={{ width: 0 }}
+                                    whileInView={{ width: 48 }}
+                                    viewport={{ once: false }}
+                                    transition={{ duration: 0.8, delay: 0.2 }}
+                                    className="h-1 bg-gym-red"
+                                ></motion.div>
+                                <span className="text-gym-red font-roboto uppercase tracking-widest font-medium">About Us</span>
                             </div>
 
-                            <h2 className="text-5xl font-anton text-white mb-6 uppercase leading-tight">
+                            <h2 className="text-5xl font-roboto text-white mb-6 uppercase leading-tight">
                                 More Than Just <br />
                                 <span className="text-gym-red">A Gym</span>
                             </h2>
@@ -83,9 +93,9 @@ const About = () => {
                             </div>
 
                             <motion.button
-                                whileHover={{ scale: 1.05 }}
+                                whileHover={{ scale: 1.05, backgroundColor: "#ff3333", color: "#ffffff" }}
                                 whileTap={{ scale: 0.95 }}
-                                className="mt-10 px-8 py-3 border border-gym-red text-gym-red font-anton uppercase tracking-wider hover:bg-gym-red hover:text-white transition-all duration-300"
+                                className="mt-10 px-8 py-3 border border-gym-red text-gym-red font-roboto uppercase tracking-wider transition-all duration-300"
                             >
                                 Read Our Story
                             </motion.button>

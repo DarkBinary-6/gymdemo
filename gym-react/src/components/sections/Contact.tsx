@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { FaMapMarkerAlt, FaPhone, FaEnvelope, FaClock } from 'react-icons/fa';
+import { FaMapMarkerAlt, FaPhone, FaClock } from 'react-icons/fa';
 
 const Contact = () => {
     const [formData, setFormData] = useState({
@@ -10,6 +10,8 @@ const Contact = () => {
         enquiryFor: 'Self',
         goal: 'General Enquiry'
     });
+
+    const [focusedField, setFocusedField] = useState<string | null>(null);
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -33,6 +35,8 @@ I'd like to know more about joining IronForge Gym!`;
         window.open(whatsappURL, '_blank');
     };
 
+    const inputClasses = "w-full bg-gym-black border border-gray-700 text-white px-4 py-3 focus:outline-none transition-all duration-300";
+
     return (
         <section id="contact" className="py-20 bg-gym-black">
             <div className="container mx-auto px-4">
@@ -44,8 +48,8 @@ I'd like to know more about joining IronForge Gym!`;
                     transition={{ duration: 0.8 }}
                     className="text-center mb-16"
                 >
-                    <span className="text-gym-red font-roboto uppercase tracking-widest font-bold">Get Started</span>
-                    <h2 className="text-4xl md:text-5xl font-anton text-white mt-2 uppercase">
+                    <span className="text-gym-red font-roboto uppercase tracking-widest font-medium">Get Started</span>
+                    <h2 className="text-4xl md:text-5xl font-roboto text-white mt-2 uppercase">
                         Contact <span className="text-stroke">Us</span>
                     </h2>
                 </motion.div>
@@ -60,36 +64,36 @@ I'd like to know more about joining IronForge Gym!`;
                         transition={{ duration: 0.8 }}
                         className="w-full lg:w-1/3 space-y-8"
                     >
-                        <div className="flex items-start">
-                            <div className="bg-gym-dark p-4 rounded text-gym-red text-xl mr-4">
+                        <div className="flex items-start group">
+                            <div className="bg-gym-dark p-4 rounded text-gym-red text-xl mr-4 group-hover:bg-gym-red group-hover:text-white transition-colors duration-300">
                                 <FaMapMarkerAlt />
                             </div>
                             <div>
-                                <h4 className="text-white font-anton uppercase text-xl mb-1">Our Location</h4>
-                                <p className="text-gray-400 font-roboto">
+                                <h4 className="text-white font-roboto uppercase text-xl mb-1">Our Location</h4>
+                                <p className="text-gray-400 font-roboto group-hover:text-gray-300 transition-colors">
                                     123 Iron Street, Muscle District<br />
                                     Metro City, MC 10001
                                 </p>
                             </div>
                         </div>
 
-                        <div className="flex items-start">
-                            <div className="bg-gym-dark p-4 rounded text-gym-red text-xl mr-4">
+                        <div className="flex items-start group">
+                            <div className="bg-gym-dark p-4 rounded text-gym-red text-xl mr-4 group-hover:bg-gym-red group-hover:text-white transition-colors duration-300">
                                 <FaPhone />
                             </div>
                             <div>
-                                <h4 className="text-white font-anton uppercase text-xl mb-1">Phone</h4>
-                                <p className="text-gray-400 font-roboto">+91 927 837 8772</p>
+                                <h4 className="text-white font-roboto uppercase text-xl mb-1">Phone</h4>
+                                <p className="text-gray-400 font-roboto group-hover:text-gray-300 transition-colors">+91 927 837 8772</p>
                             </div>
                         </div>
 
-                        <div className="flex items-start">
-                            <div className="bg-gym-dark p-4 rounded text-gym-red text-xl mr-4">
+                        <div className="flex items-start group">
+                            <div className="bg-gym-dark p-4 rounded text-gym-red text-xl mr-4 group-hover:bg-gym-red group-hover:text-white transition-colors duration-300">
                                 <FaClock />
                             </div>
                             <div>
-                                <h4 className="text-white font-anton uppercase text-xl mb-1">Hours</h4>
-                                <p className="text-gray-400 font-roboto">
+                                <h4 className="text-white font-roboto uppercase text-xl mb-1">Hours</h4>
+                                <p className="text-gray-400 font-roboto group-hover:text-gray-300 transition-colors">
                                     Mon-Fri: 5am - 11pm<br />
                                     Sat-Sun: 7am - 9pm
                                 </p>
@@ -109,24 +113,26 @@ I'd like to know more about joining IronForge Gym!`;
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                                 <div>
                                     <label className="block text-gray-400 font-roboto text-sm uppercase tracking-wider mb-2">Name</label>
-                                    <input
+                                    <motion.input
+                                        whileFocus={{ scale: 1.02, borderColor: "#ff3333" }}
                                         type="text"
                                         name="name"
                                         value={formData.name}
                                         onChange={handleChange}
-                                        className="w-full bg-gym-black border border-gray-700 text-white px-4 py-3 focus:border-gym-red focus:outline-none transition-colors"
+                                        className={inputClasses}
                                         placeholder="John Doe"
                                         required
                                     />
                                 </div>
                                 <div>
                                     <label className="block text-gray-400 font-roboto text-sm uppercase tracking-wider mb-2">Phone</label>
-                                    <input
+                                    <motion.input
+                                        whileFocus={{ scale: 1.02, borderColor: "#ff3333" }}
                                         type="tel"
                                         name="phone"
                                         value={formData.phone}
                                         onChange={handleChange}
-                                        className="w-full bg-gym-black border border-gray-700 text-white px-4 py-3 focus:border-gym-red focus:outline-none transition-colors"
+                                        className={inputClasses}
                                         placeholder="+91..."
                                         required
                                     />
@@ -136,53 +142,58 @@ I'd like to know more about joining IronForge Gym!`;
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                                 <div>
                                     <label className="block text-gray-400 font-roboto text-sm uppercase tracking-wider mb-2">Age</label>
-                                    <input
+                                    <motion.input
+                                        whileFocus={{ scale: 1.02, borderColor: "#ff3333" }}
                                         type="number"
                                         name="age"
                                         value={formData.age}
                                         onChange={handleChange}
-                                        className="w-full bg-gym-black border border-gray-700 text-white px-4 py-3 focus:border-gym-red focus:outline-none transition-colors"
+                                        className={inputClasses}
                                         placeholder="25"
                                     />
                                 </div>
                                 <div>
                                     <label className="block text-gray-400 font-roboto text-sm uppercase tracking-wider mb-2">Enquiry For</label>
-                                    <select
+                                    <motion.select
+                                        whileFocus={{ scale: 1.02, borderColor: "#ff3333" }}
                                         name="enquiryFor"
                                         value={formData.enquiryFor}
                                         onChange={handleChange}
-                                        className="w-full bg-gym-black border border-gray-700 text-white px-4 py-3 focus:border-gym-red focus:outline-none transition-colors"
+                                        className={inputClasses}
                                     >
                                         <option value="Self">Self</option>
                                         <option value="Spouse">Spouse</option>
                                         <option value="Friend">Friend</option>
                                         <option value="Group">Group</option>
-                                    </select>
+                                    </motion.select>
                                 </div>
                             </div>
 
                             <div>
                                 <label className="block text-gray-400 font-roboto text-sm uppercase tracking-wider mb-2">Primary Goal</label>
-                                <select
+                                <motion.select
+                                    whileFocus={{ scale: 1.02, borderColor: "#ff3333" }}
                                     name="goal"
                                     value={formData.goal}
                                     onChange={handleChange}
-                                    className="w-full bg-gym-black border border-gray-700 text-white px-4 py-3 focus:border-gym-red focus:outline-none transition-colors"
+                                    className={inputClasses}
                                 >
                                     <option value="General Enquiry">General Enquiry</option>
                                     <option value="Weight Loss">Weight Loss</option>
                                     <option value="Muscle Building">Muscle Building</option>
                                     <option value="Personal Training">Personal Training</option>
                                     <option value="Competition Prep">Competition Prep</option>
-                                </select>
+                                </motion.select>
                             </div>
 
-                            <button
+                            <motion.button
+                                whileHover={{ scale: 1.02, backgroundColor: "#cc0000" }}
+                                whileTap={{ scale: 0.98 }}
                                 type="submit"
-                                className="w-full bg-gym-red text-white py-4 font-anton text-xl uppercase tracking-wider hover:bg-red-600 transition-colors clip-path-slant mt-4"
+                                className="w-full bg-gym-red text-white py-4 font-roboto text-xl uppercase tracking-wider hover:bg-red-600 transition-all clip-path-slant mt-4"
                             >
                                 Send Enquiry via WhatsApp
-                            </button>
+                            </motion.button>
                         </form>
                     </motion.div>
                 </div>

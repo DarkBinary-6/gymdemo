@@ -12,7 +12,7 @@ const Footer = () => {
                     {/* Brand */}
                     <div className="col-span-1 md:col-span-2">
                         <Link to="home" smooth={true} duration={500} className="inline-block cursor-pointer">
-                            <span className="text-gym-red text-4xl font-anton tracking-wider">IRONFORGE</span>
+                            <span className="text-gym-red text-4xl font-roboto tracking-wider">IRONFORGE</span>
                         </Link>
                         <p className="text-gray-400 font-roboto mt-4 max-w-sm">
                             Forging elite physiques and unshakeable discipline. Join the movement and redefine your limits.
@@ -35,7 +35,7 @@ const Footer = () => {
 
                     {/* Quick Links */}
                     <div>
-                        <h4 className="text-white font-anton uppercase tracking-wider mb-6">Quick Links</h4>
+                        <h4 className="text-white font-roboto uppercase tracking-wider mb-6">Quick Links</h4>
                         <ul className="space-y-3 font-roboto text-gray-400">
                             <li>
                                 <Link to="programs" smooth={true} duration={500} className="hover:text-gym-red transition-colors cursor-pointer">Programs</Link>
@@ -54,7 +54,7 @@ const Footer = () => {
 
                     {/* Legal */}
                     <div>
-                        <h4 className="text-white font-anton uppercase tracking-wider mb-6">Legal</h4>
+                        <h4 className="text-white font-roboto uppercase tracking-wider mb-6">Legal</h4>
                         <ul className="space-y-3 font-roboto text-gray-400">
                             <li><a href="#" className="hover:text-gym-red transition-colors">Privacy Policy</a></li>
                             <li><a href="#" className="hover:text-gym-red transition-colors">Terms of Service</a></li>

@@ -1,4 +1,3 @@
-import React from 'react';
 import Navbar from './components/layout/Navbar';
 import Footer from './components/layout/Footer';
 import Hero from './components/sections/Hero';
@@ -10,6 +9,7 @@ import Banner from './components/sections/Banner';
 import Testimonials from './components/sections/Testimonials';
 import Pricing from './components/sections/Pricing';
 import Contact from './components/sections/Contact';
+import WhatsAppButton from './components/ui/WhatsAppButton';
 
 function App() {
   return (
@@ -26,6 +26,7 @@ function App() {
         <Pricing />
         <Contact />
       </main>
+      <WhatsAppButton />
       <Footer />
     </div>
   );

@@ -55,8 +55,8 @@ const Pricing = () => {
                     transition={{ duration: 0.8 }}
                     className="text-center mb-16"
                 >
-                    <span className="text-gym-red font-roboto uppercase tracking-widest font-bold">Membership</span>
-                    <h2 className="text-4xl md:text-5xl font-anton text-white mt-2 uppercase">
+                    <span className="text-gym-red font-roboto uppercase tracking-widest font-medium">Membership</span>
+                    <h2 className="text-4xl md:text-5xl font-roboto text-white mt-2 uppercase">
                         Invest In <span className="text-stroke">Yourself</span>
                     </h2>
                 </motion.div>
@@ -71,21 +71,21 @@ const Pricing = () => {
                             transition={{ duration: 0.6, delay: index * 0.1 }}
                             whileHover={{ y: -10, transition: { duration: 0.3 } }}
                             className={`p-8 rounded relative border ${plan.recommended
-                                    ? 'bg-gym-gray border-gym-red transform md:-translate-y-4 shadow-[0_0_30px_rgba(255,51,51,0.2)]'
-                                    : 'bg-gym-black border-gray-800'
+                                ? 'bg-gym-gray border-gym-red transform md:-translate-y-4 shadow-[0_0_30px_rgba(255,51,51,0.2)]'
+                                : 'bg-gym-black border-gray-800'
                                 }`}
                         >
                             {plan.recommended && (
-                                <div className="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-gym-red text-white py-1 px-4 font-anton text-sm uppercase tracking-wider clip-path-slant">
+                                <div className="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-gym-red text-white py-1 px-4 font-roboto text-sm uppercase tracking-wider clip-path-slant">
                                     Most Popular
                                 </div>
                             )}
 
-                            <h3 className="text-2xl font-anton text-white uppercase tracking-wide mb-2">
+                            <h3 className="text-2xl font-roboto text-white uppercase tracking-wide mb-2">
                                 {plan.name}
                             </h3>
                             <div className="flex items-end mb-6">
-                                <span className="text-4xl md:text-5xl font-anton text-gym-red">${plan.price}</span>
+                                <span className="text-4xl md:text-5xl font-roboto text-gym-red">${plan.price}</span>
                                 <span className="text-gray-400 font-roboto mb-2 ml-1">/month</span>
                             </div>
 
@@ -102,9 +102,9 @@ const Pricing = () => {
                                 to="contact"
                                 smooth={true}
                                 duration={500}
-                                className={`block w-full py-4 text-center font-anton uppercase tracking-wider transition-colors cursor-pointer clip-path-slant ${plan.recommended
-                                        ? 'bg-gym-red text-white hover:bg-red-600'
-                                        : 'bg-white text-gym-black hover:bg-gray-200'
+                                className={`block w-full py-4 text-center font-roboto uppercase tracking-wider transition-colors cursor-pointer clip-path-slant ${plan.recommended
+                                    ? 'bg-gym-red text-white hover:bg-red-600'
+                                    : 'bg-white text-gym-black hover:bg-gray-200'
                                     }`}
                             >
                                 Choose Plan
