@@ -1,4 +1,4 @@
-import { motion, Variants } from 'framer-motion';
+import { motion, type Variants } from 'framer-motion';
 import { FaDumbbell, FaRunning, FaHeartbeat, FaFistRaised } from 'react-icons/fa';
 
 const programs = [

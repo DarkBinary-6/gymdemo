@@ -1,4 +1,4 @@
-import { motion, useScroll, useTransform, Variants } from 'framer-motion';
+import { motion, useScroll, useTransform, type Variants } from 'framer-motion';
 import { Link } from 'react-scroll';
 
 const Hero = () => {

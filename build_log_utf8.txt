@@ -1,0 +1,6 @@
+﻿
+> gym-react@0.0.0 build
+> tsc -b && vite build
+
+src/components/sections/Hero.tsx(1,43): error TS1484: 'Variants' is a type and must be imported using a type-only import when 'verbatimModuleSyntax' is enabled.
+src/components/sections/Programs.tsx(1,18): error TS1484: 'Variants' is a type and must be imported using a type-only import when 'verbatimModuleSyntax' is enabled.
