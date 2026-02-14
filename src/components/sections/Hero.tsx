@@ -1,4 +1,4 @@
-import { motion, useScroll, useTransform } from 'framer-motion';
+import { motion, useScroll, useTransform, Variants } from 'framer-motion';
 import { Link } from 'react-scroll';
 
 const Hero = () => {
@@ -6,7 +6,7 @@ const Hero = () => {
     const y = useTransform(scrollY, [0, 500], [0, 150]);
     const opacity = useTransform(scrollY, [0, 300], [1, 0]);
 
-    const titleVariants = {
+    const titleVariants: Variants = {
         hidden: { y: 100, opacity: 0 },
         visible: {
             y: 0,
@@ -19,7 +19,7 @@ const Hero = () => {
         }
     };
 
-    const wordVariants = {
+    const wordVariants: Variants = {
         hidden: { y: 100, opacity: 0 },
         visible: {
             y: 0,

@@ -11,7 +11,7 @@ const Contact = () => {
         goal: 'General Enquiry'
     });
 
-    const [focusedField, setFocusedField] = useState<string | null>(null);
+
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });

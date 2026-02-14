@@ -1,4 +1,3 @@
-import { motion } from 'framer-motion';
 import { FaStar, FaQuoteLeft } from 'react-icons/fa';
 
 const reviews1 = [
