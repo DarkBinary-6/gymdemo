@@ -29,7 +29,7 @@ const Navbar = () => {
             <div className="container mx-auto px-4 flex justify-between items-center">
                 {/* Logo */}
                 <div className="flex items-center gap-2">
-                    <span className="text-gym-red text-3xl font-roboto tracking-wider">IRONFORGE</span>
+                    <span className="text-gym-red text-3xl font-anton tracking-wider">IRONFORGE</span>
                 </div>
 
                 {/* Desktop Menu */}

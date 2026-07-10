@@ -12,7 +12,7 @@ const Footer = () => {
                     {/* Brand */}
                     <div className="col-span-1 md:col-span-2">
                         <Link to="home" smooth={true} duration={500} className="inline-block cursor-pointer">
-                            <span className="text-gym-red text-4xl font-roboto tracking-wider">IRONFORGE</span>
+                            <span className="text-gym-red text-4xl font-anton tracking-wider">IRONFORGE</span>
                         </Link>
                         <p className="text-gray-400 font-roboto mt-4 max-w-sm">
                             Forging elite physiques and unshakeable discipline. Join the movement and redefine your limits.
