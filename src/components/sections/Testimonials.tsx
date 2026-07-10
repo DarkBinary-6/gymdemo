@@ -1,4 +1,5 @@
 import { FaStar, FaQuoteLeft } from 'react-icons/fa';
+import { useRef, useCallback } from 'react';
 
 const reviews1 = [
     { id: 1, name: "Rahul Sharma", role: "Software Engineer", content: "Best gym in Indiranagar! The trainers are super knowledgeable.", rating: 5 },
@@ -27,7 +28,7 @@ const reviews2 = [
 ];
 
 const TestimonialCard = ({ review }: { review: typeof reviews1[0] }) => (
-    <div className="bg-gym-gray p-6 rounded-lg border border-gray-800 w-[300px] md:w-[400px] flex-shrink-0 mx-4 relative group hover:border-gym-red transition-colors duration-300">
+    <div className="bg-gym-gray p-6 rounded-lg border border-gray-800 w-[260px] sm:w-[300px] md:w-[400px] flex-shrink-0 mx-3 md:mx-4 relative group hover:border-gym-red transition-colors duration-300">
         <div className="absolute top-4 right-4 text-gym-red/20 text-2xl group-hover:text-gym-red/40 transition-colors">
             <FaQuoteLeft />
         </div>
@@ -43,6 +44,21 @@ const TestimonialCard = ({ review }: { review: typeof reviews1[0] }) => (
 );
 
 const Testimonials = () => {
+    const row1Ref = useRef<HTMLDivElement>(null);
+    const row2Ref = useRef<HTMLDivElement>(null);
+
+    const handleTouchStart = useCallback((ref: React.RefObject<HTMLDivElement | null>) => {
+        if (ref.current) {
+            ref.current.style.animationPlayState = 'paused';
+        }
+    }, []);
+
+    const handleTouchEnd = useCallback((ref: React.RefObject<HTMLDivElement | null>) => {
+        if (ref.current) {
+            ref.current.style.animationPlayState = 'running';
+        }
+    }, []);
+
     return (
         <section id="testimonials" className="py-20 bg-gym-black overflow-hidden">
             <div className="container mx-auto px-4 mb-10 text-center">
@@ -54,7 +70,12 @@ const Testimonials = () => {
 
             {/* Row 1: Left to Right */}
             <div className="relative w-full mb-8">
-                <div className="flex animate-scroll-left hover:pause">
+                <div
+                    ref={row1Ref}
+                    className="flex animate-scroll-left hover:pause"
+                    onTouchStart={() => handleTouchStart(row1Ref)}
+                    onTouchEnd={() => handleTouchEnd(row1Ref)}
+                >
                     {[...reviews1, ...reviews1].map((review, idx) => (
                         <TestimonialCard key={`${review.id}-${idx}`} review={review} />
                     ))}
@@ -63,7 +84,12 @@ const Testimonials = () => {
 
             {/* Row 2: Right to Left */}
             <div className="relative w-full">
-                <div className="flex animate-scroll-right hover:pause">
+                <div
+                    ref={row2Ref}
+                    className="flex animate-scroll-right hover:pause"
+                    onTouchStart={() => handleTouchStart(row2Ref)}
+                    onTouchEnd={() => handleTouchEnd(row2Ref)}
+                >
                     {[...reviews2, ...reviews2].map((review, idx) => (
                         <TestimonialCard key={`${review.id}-${idx}`} review={review} />
                     ))}
@@ -75,3 +101,4 @@ const Testimonials = () => {
 };
 
 export default Testimonials;
+

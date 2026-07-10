@@ -107,7 +107,7 @@ const Hero = () => {
                             <motion.button
                                 whileHover={{ scale: 1.05, backgroundColor: "#cc0000" }}
                                 whileTap={{ scale: 0.95 }}
-                                className="bg-gym-red text-white py-4 px-10 font-roboto font-medium text-xl uppercase tracking-wider clip-path-slant text-center cursor-pointer w-full sm:w-auto"
+                                className="bg-gym-red text-white py-4 px-10 font-roboto font-medium text-lg md:text-xl uppercase tracking-wider clip-path-slant text-center cursor-pointer w-full sm:w-auto"
                             >
                                 Start Training
                             </motion.button>
@@ -120,7 +120,7 @@ const Hero = () => {
                             <motion.button
                                 whileHover={{ scale: 1.05, backgroundColor: "#ffffff", color: "#0a0a0a" }}
                                 whileTap={{ scale: 0.95 }}
-                                className="border-2 border-white text-white py-4 px-10 font-roboto font-medium text-xl uppercase tracking-wider clip-path-slant text-center cursor-pointer w-full sm:w-auto"
+                                className="border-2 border-white text-white py-4 px-10 font-roboto font-medium text-lg md:text-xl uppercase tracking-wider clip-path-slant text-center cursor-pointer w-full sm:w-auto"
                             >
                                 Book Free Trial
                             </motion.button>
@@ -132,7 +132,7 @@ const Hero = () => {
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         transition={{ delay: 1.2, duration: 1 }}
-                        className="mt-16 flex items-center gap-8 text-sm font-roboto text-gray-400 uppercase tracking-widest"
+                        className="mt-16 flex flex-wrap items-center gap-4 md:gap-8 text-xs md:text-sm font-roboto text-gray-400 uppercase tracking-widest"
                     >
                         <div className="flex items-center gap-2">
                             <span className="w-2 h-2 bg-gym-red rounded-full"></span>

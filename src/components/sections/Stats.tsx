@@ -10,7 +10,7 @@ const stats = [
 
 const Counter = ({ from, to }: { from: number; to: number }) => {
     const nodeRef = useRef<HTMLSpanElement>(null);
-    const isInView = useInView(nodeRef, { once: true, margin: "-100px" });
+    const isInView = useInView(nodeRef, { once: true, margin: "-20px" });
 
     useEffect(() => {
         if (!isInView) return;
@@ -49,7 +49,7 @@ const Counter = ({ from, to }: { from: number; to: number }) => {
         return () => { controls.stop = true; };
     }, [isInView, from, to]);
 
-    return <span ref={nodeRef} className="text-5xl md:text-7xl font-roboto text-white">{from}</span>;
+    return <span ref={nodeRef} className="text-4xl sm:text-5xl md:text-7xl font-roboto text-white">{from}</span>;
 };
 
 const Stats = () => {

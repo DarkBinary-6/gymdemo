@@ -6,7 +6,7 @@ const Banner = () => {
         <section className="relative py-32 flex items-center justify-center overflow-hidden">
             {/* Parallax Background */}
             <div
-                className="absolute inset-0 z-0 bg-fixed bg-cover bg-center"
+                className="absolute inset-0 z-0 bg-scroll md:bg-fixed bg-cover bg-center"
                 style={{ backgroundImage: "url('/banner-bg.png')" }} /* Assuming image exists, or uses hero */
             >
                 <div className="absolute inset-0 bg-gym-red/50 mix-blend-multiply" />
@@ -34,7 +34,7 @@ const Banner = () => {
                         to="contact"
                         smooth={true}
                         duration={500}
-                        className="inline-block bg-white text-gym-red py-4 px-12 font-roboto text-xl uppercase tracking-wider hover:bg-black hover:text-white transition-colors duration-300 clip-path-slant cursor-pointer"
+                        className="inline-block bg-white text-gym-red py-4 px-8 md:px-12 font-roboto text-lg md:text-xl uppercase tracking-wider hover:bg-black hover:text-white transition-colors duration-300 clip-path-slant cursor-pointer"
                     >
                         Join Introduction Session
                     </Link>

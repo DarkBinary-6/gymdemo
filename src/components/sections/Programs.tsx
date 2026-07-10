@@ -1,5 +1,6 @@
 import { motion, type Variants } from 'framer-motion';
 import { FaDumbbell, FaRunning, FaHeartbeat, FaFistRaised } from 'react-icons/fa';
+import { useState, useEffect } from 'react';
 
 const programs = [
   {
@@ -51,7 +52,20 @@ const item: Variants = {
   }
 };
 
+const useIsMobile = (breakpoint = 768) => {
+  const [isMobile, setIsMobile] = useState(false);
+  useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth < breakpoint);
+    check();
+    window.addEventListener('resize', check);
+    return () => window.removeEventListener('resize', check);
+  }, [breakpoint]);
+  return isMobile;
+};
+
 const Programs = () => {
+  const isMobile = useIsMobile();
+
   return (
     <section id="programs" className="py-20 bg-gym-black">
       <div className="container mx-auto px-4">
@@ -80,13 +94,20 @@ const Programs = () => {
             <motion.div
               key={program.id}
               variants={item}
-              whileHover={{
-                y: -10,
-                transition: { type: "spring", stiffness: 300 }
-              }}
-              className="bg-gym-gray p-8 rounded border border-gray-800 hover:border-gym-red group transition-colors duration-300"
+              {...(!isMobile ? {
+                whileHover: {
+                  y: -10,
+                  transition: { type: "spring", stiffness: 300 }
+                }
+              } : {
+                whileTap: {
+                  scale: 0.98,
+                  transition: { type: "spring", stiffness: 300 }
+                }
+              })}
+              className={`bg-gym-gray p-8 rounded border border-gray-800 ${!isMobile ? 'hover:border-gym-red' : 'border-gray-800'} group transition-colors duration-300`}
             >
-              <div className="text-4xl text-gym-red mb-6 transform group-hover:scale-110 transition-transform duration-300">
+              <div className={`text-4xl text-gym-red mb-6 transform ${!isMobile ? 'group-hover:scale-110' : ''} transition-transform duration-300`}>
                 {program.icon}
               </div>
               <h3 className="text-2xl font-roboto text-white mb-4 uppercase tracking-wide">

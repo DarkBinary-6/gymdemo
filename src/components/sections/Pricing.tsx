@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import { FaCheck } from 'react-icons/fa';
 import { Link } from 'react-scroll';
+import { useState, useEffect } from 'react';
 
 const plans = [
     {
@@ -43,7 +44,20 @@ const plans = [
     }
 ];
 
+const useIsMobile = (breakpoint = 768) => {
+    const [isMobile, setIsMobile] = useState(false);
+    useEffect(() => {
+        const check = () => setIsMobile(window.innerWidth < breakpoint);
+        check();
+        window.addEventListener('resize', check);
+        return () => window.removeEventListener('resize', check);
+    }, [breakpoint]);
+    return isMobile;
+};
+
 const Pricing = () => {
+    const isMobile = useIsMobile();
+
     return (
         <section id="membership" className="py-20 bg-gym-dark relative">
             <div className="container mx-auto px-4">
@@ -69,7 +83,9 @@ const Pricing = () => {
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
                             transition={{ duration: 0.6, delay: index * 0.1 }}
-                            whileHover={{ y: -10, transition: { duration: 0.3 } }}
+                            {...(!isMobile ? {
+                                whileHover: { y: -10, transition: { duration: 0.3 } }
+                            } : {})}
                             className={`p-8 rounded relative border ${plan.recommended
                                 ? 'bg-gym-gray border-gym-red transform md:-translate-y-4 shadow-[0_0_30px_rgba(255,51,51,0.2)]'
                                 : 'bg-gym-black border-gray-800'
@@ -118,3 +134,4 @@ const Pricing = () => {
 };
 
 export default Pricing;
+

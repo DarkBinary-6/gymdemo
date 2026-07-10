@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import { FaInstagram, FaTwitter, FaFacebookF } from 'react-icons/fa';
+import { useState, useEffect } from 'react';
 
 const trainers = [
     {
@@ -28,7 +29,22 @@ const trainers = [
     }
 ];
 
+const useIsMobile = (breakpoint = 768) => {
+    const [isMobile, setIsMobile] = useState(false);
+
+    useEffect(() => {
+        const check = () => setIsMobile(window.innerWidth < breakpoint);
+        check();
+        window.addEventListener('resize', check);
+        return () => window.removeEventListener('resize', check);
+    }, [breakpoint]);
+
+    return isMobile;
+};
+
 const Trainers = () => {
+    const isMobile = useIsMobile();
+
     return (
         <section id="trainers" className="py-20 bg-gym-dark relative overflow-hidden">
             {/* Background Pattern */}
@@ -68,24 +84,41 @@ const Trainers = () => {
                                 <img
                                     src={trainer.image}
                                     alt={trainer.name}
-                                    className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-110"
+                                    className={`w-full h-full object-cover transition-transform duration-700 ease-out ${!isMobile ? 'group-hover:scale-110' : ''}`}
                                 />
                             </div>
 
-                            {/* Overlay Content */}
-                            <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
-                                <h3 className="text-xl font-roboto text-white uppercase tracking-wide translate-y-8 group-hover:translate-y-0 transition-transform duration-300 ease-out">
-                                    {trainer.name}
-                                </h3>
-                                <p className="text-gym-red font-roboto text-sm uppercase tracking-wider mb-4 translate-y-8 group-hover:translate-y-0 transition-transform duration-300 delay-75 ease-out">
-                                    {trainer.role}
-                                </p>
-                                <div className="flex gap-4 translate-y-8 group-hover:translate-y-0 transition-transform duration-300 delay-100 ease-out">
-                                    <a href="#" className="text-gray-300 hover:text-white transition-colors hover:scale-110 transform"><FaInstagram /></a>
-                                    <a href="#" className="text-gray-300 hover:text-white transition-colors hover:scale-110 transform"><FaTwitter /></a>
-                                    <a href="#" className="text-gray-300 hover:text-white transition-colors hover:scale-110 transform"><FaFacebookF /></a>
+                            {isMobile ? (
+                                /* Mobile: Always-visible overlay with name, role & socials */
+                                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent flex flex-col justify-end p-5">
+                                    <h3 className="text-lg font-roboto text-white uppercase tracking-wide">
+                                        {trainer.name}
+                                    </h3>
+                                    <p className="text-gym-red font-roboto text-sm uppercase tracking-wider mb-3">
+                                        {trainer.role}
+                                    </p>
+                                    <div className="flex gap-4">
+                                        <a href="#" className="text-white/80 text-lg"><FaInstagram /></a>
+                                        <a href="#" className="text-white/80 text-lg"><FaTwitter /></a>
+                                        <a href="#" className="text-white/80 text-lg"><FaFacebookF /></a>
+                                    </div>
                                 </div>
-                            </div>
+                            ) : (
+                                /* Desktop: Hover-reveal overlay (unchanged) */
+                                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
+                                    <h3 className="text-xl font-roboto text-white uppercase tracking-wide translate-y-8 group-hover:translate-y-0 transition-transform duration-300 ease-out">
+                                        {trainer.name}
+                                    </h3>
+                                    <p className="text-gym-red font-roboto text-sm uppercase tracking-wider mb-4 translate-y-8 group-hover:translate-y-0 transition-transform duration-300 delay-75 ease-out">
+                                        {trainer.role}
+                                    </p>
+                                    <div className="flex gap-4 translate-y-8 group-hover:translate-y-0 transition-transform duration-300 delay-100 ease-out">
+                                        <a href="#" className="text-gray-300 hover:text-white transition-colors hover:scale-110 transform"><FaInstagram /></a>
+                                        <a href="#" className="text-gray-300 hover:text-white transition-colors hover:scale-110 transform"><FaTwitter /></a>
+                                        <a href="#" className="text-gray-300 hover:text-white transition-colors hover:scale-110 transform"><FaFacebookF /></a>
+                                    </div>
+                                </div>
+                            )}
                         </motion.div>
                     ))}
                 </div>

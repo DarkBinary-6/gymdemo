@@ -26,12 +26,12 @@ const About = () => {
                                 <img
                                     src="/about-1.png"
                                     alt="Gym Interior"
-                                    className="w-full h-64 object-cover rounded-sm grayscale hover:grayscale-0 transition-all duration-500 hover:scale-[1.02]"
+                                    className="w-full h-64 object-cover rounded-sm md:grayscale md:hover:grayscale-0 transition-all duration-500 md:hover:scale-[1.02]"
                                 />
                                 <img
                                     src="/about-2.png"
                                     alt="Training"
-                                    className="w-full h-48 object-cover rounded-sm grayscale hover:grayscale-0 transition-all duration-500 hover:scale-[1.02]"
+                                    className="w-full h-48 object-cover rounded-sm md:grayscale md:hover:grayscale-0 transition-all duration-500 md:hover:scale-[1.02]"
                                 />
                             </motion.div>
 
@@ -42,12 +42,12 @@ const About = () => {
                                 <img
                                     src="/about-3.png"
                                     alt="Weights"
-                                    className="w-full h-48 object-cover rounded-sm grayscale hover:grayscale-0 transition-all duration-500 hover:scale-[1.02]"
+                                    className="w-full h-48 object-cover rounded-sm md:grayscale md:hover:grayscale-0 transition-all duration-500 md:hover:scale-[1.02]"
                                 />
                                 <img
                                     src="/about-4.png"
                                     alt="Cardio"
-                                    className="w-full h-64 object-cover rounded-sm grayscale hover:grayscale-0 transition-all duration-500 hover:scale-[1.02]"
+                                    className="w-full h-64 object-cover rounded-sm md:grayscale md:hover:grayscale-0 transition-all duration-500 md:hover:scale-[1.02]"
                                 />
                             </motion.div>
 
