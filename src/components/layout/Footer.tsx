@@ -67,9 +67,9 @@ const Footer = () => {
                     </div>
                 </div>
 
-                <div className="border-t border-gray-900 pt-8 flex flex-col md:flex-row justify-between items-center text-gray-500 font-roboto text-sm uppercase tracking-wider">
+                <div className="border-t border-gray-900 pt-8 flex flex-col items-center justify-center text-center text-gray-500 font-roboto text-sm uppercase tracking-wider gap-2">
                     <p>&copy; {currentYear} IronForge Gym. All rights reserved.</p>
-                    <p className="mt-2 md:mt-0">Built by <a href="https://enchanted-developers.vercel.app" target="_blank" rel="noopener noreferrer" className="text-gym-red hover:text-white transition-colors">EnchantedDevelopers</a></p>
+                    <p>Built by <a href="https://enchanted-developers.vercel.app" target="_blank" rel="noopener noreferrer" className="text-gym-red hover:text-white transition-colors">EnchantedDevelopers</a></p>
                 </div>
             </div>
         </footer>
