@@ -21,7 +21,7 @@ const Banner = () => {
                     className="text-4xl md:text-6xl font-roboto text-white uppercase mb-8 leading-tight"
                 >
                     Are You Ready To <br />
-                    <span className="text-black">Change Your Life?</span>
+                    <span className="text-gym-gold">Change Your Life?</span>
                 </motion.h2>
 
                 <motion.div
