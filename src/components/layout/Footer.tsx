@@ -41,6 +41,9 @@ const Footer = () => {
                                 <Link to="programs" smooth={true} duration={500} className="hover:text-gym-red transition-colors cursor-pointer">Programs</Link>
                             </li>
                             <li>
+                                <Link to="gallery" smooth={true} duration={500} className="hover:text-gym-red transition-colors cursor-pointer">Gallery</Link>
+                            </li>
+                            <li>
                                 <Link to="trainers" smooth={true} duration={500} className="hover:text-gym-red transition-colors cursor-pointer">Trainers</Link>
                             </li>
                             <li>

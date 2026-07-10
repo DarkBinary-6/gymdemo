@@ -4,6 +4,7 @@ import Hero from './components/sections/Hero';
 import Stats from './components/sections/Stats';
 import About from './components/sections/About';
 import Programs from './components/sections/Programs';
+import Gallery from './components/sections/Gallery';
 import Trainers from './components/sections/Trainers';
 import Banner from './components/sections/Banner';
 import Testimonials from './components/sections/Testimonials';
@@ -20,6 +21,7 @@ function App() {
         <Stats />
         <About />
         <Programs />
+        <Gallery />
         <Trainers />
         <Banner />
         <Testimonials />
